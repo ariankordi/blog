@@ -1,0 +1,15 @@
+{{/*
+    Computes age in years from a given date of birth.
+    Usage: {{< age "2002-07-15" >}}
+*/}}
+
+{{- $dob := time.AsTime (.Get 0) -}}
+{{- $now := now -}}
+
+{{- $age := sub (dateFormat "2006" $now | int) (dateFormat "2006" $dob | int) -}}
+
+{{- if lt (dateFormat "0102" $now) (dateFormat "0102" $dob) -}}
+    {{- $age = sub $age 1 -}}
+{{- end -}}
+
+{{ $age }}

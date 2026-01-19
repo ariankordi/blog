@@ -1,0 +1,85 @@
+# https://www.docslikecode.com/learn/03-hugo-go-netlify/
+# https://www.testingwithmarie.com/posts/20241126-create-a-static-blog-with-hugo/
+# https://noamlerner.com/posts/setting_up_a_hugo_blog_with_github_pages/
+# https://github.com/lukeorth/poison-demo-site
+
+baseURL = "https://ariankordi.net/"
+languageCode = "en-us"
+theme = "poison"
+
+title = "Arian Kordi's Blog"
+#params.author.name = "Arian Kordi"
+pluralizelisttitles = false
+
+[params]
+
+    author.name = "Arian Kordi"
+
+    #brand_image = "/images/brand_image.jpg"
+    # og_image = ""                             # path to social icon - front matter: image takes precedent, then og_image, then brand_url
+    # publisher_icon = ""                       # path to publisher icon - defaults to favicon, used in schema
+    # favicon = ""                              # path to favicon
+    # description = 'A pragmatic Hugo theme for bloggers. Based on the classic <a href="https://github.com/poole/hyde" target="_blank">Hyde</a> design by <a href="https://github.com/mdo" target="_blank">@mdo</a>'
+    #brand = "Arian's Blog"
+    #description = "I finally have one."
+    brand = "Arian Kordi"
+    description = "Welcome to the blog."
+
+    # No, no, no. Needs to do this dynamically.
+    dark_mode = false
+
+    menu = [
+        {Name = "About & Contact", URL = "/about/", HasChildren = false},
+        {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
+    ]
+
+    github_url = "https://github.com/ariankordi"
+    linkedin_url = "https://www.linkedin.com/in/arian-kordi-940408233/"
+    #x_url = "https://x.com"
+    discord_url = "https://discord.com/users/374374059695276039"
+    #youtube_url = "https://youtube.com"
+    email_url = "mailto:ariankordi@ariankordi.net"
+
+    # Plausible
+    plausible = false
+    plausible_domain = "poison.lukeorth.com"
+    plausible_script = "https://plausible.lukeorth.com/js/script.js"
+
+    # Adds an RSS icon to the end of the socials which links to {{ .Site.BaseURL }}/index.xml
+    #rss_icon = true
+    # Which section the RSS icon links to, defaults to all content. See https://gohugo.io/templates/rss/#section-rss
+    rss_section = "posts"
+
+    # sidebar
+    sidebar_bg_color = "#260936"            # default is #202020
+    sidebar_img_border_color = "#515151"    # default is #515151
+    sidebar_p_color = "#909090"             # default is #909090
+    sidebar_h1_color = "#FFF"               # default is #FFF
+    sidebar_a_color = "#FFF"                # default is #FFF
+    sidebar_socials_color = "#FFF"          # default is #FFF
+    moon_sun_color = "#FFF"                 # default is #FFF
+    moon_sun_background_color = "#515151"   # default is #515151
+
+    # light mode
+    text_color = "#222"             # default is #222
+    content_bg_color = "#FAF9F6"    # default is #FAF9F6
+    post_title_color = "#303030"    # default is #303030
+    list_color = "#5a5a5a"          # default is #5a5a5a
+    link_color = "#268bd2"          # default is #268bd2
+    date_color = "#515151"          # default is #515151
+    table_border_color = "#E5E5E5"  # default is #E5E5E5
+    table_stripe_color = "#F9F9F9"  # default is #F9F9F9
+
+    # dark mode
+    text_color_dark = "#eee"            # default is #eee
+    content_bg_color_dark = "#121212"   # default is #121212
+    post_title_color_dark = "#DBE2E9"   # default is #DBE2E9
+    list_color_dark = "#9d9d9d"         # default is #9d9d9d
+    link_color_dark = "#268bd2"         # default is #268bd2
+    date_color_dark = "#9a9a9a"         # default is #9a9a9a
+    table_border_color_dark = "#515151" # default is #515151
+    table_stripe_color_dark = "#202020" # default is #202020
+
+
+[params.meta]
+    favicon = false
