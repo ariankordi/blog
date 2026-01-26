@@ -5,14 +5,22 @@
 
 baseURL = "https://ariankordi.net/"
 languageCode = "en-us"
-theme = "poison"
+# theme = "poison" # expects it in themes/
 
 title = "Arian Kordi's Blog"
 #params.author.name = "Arian Kordi"
 pluralizelisttitles = false
 
-[params]
+[module]
+    [[module.imports]]
+        path = "github.com/lukeorth/poison"
+    [[module.imports]]
+        path = "github.com/privatemaker/headless-cms"
 
+[outputs]
+    home = [ "HTML", "RSS", "HeadlessCMSConfig" ]
+
+[params]
     author.name = "Arian Kordi"
 
     #brand_image = "/images/brand_image.jpg"
@@ -80,6 +88,51 @@ pluralizelisttitles = false
     table_border_color_dark = "#515151" # default is #515151
     table_stripe_color_dark = "#202020" # default is #202020
 
-
 [params.meta]
     favicon = false
+
+[params.headless_cms]
+    engine = "sveltia"
+    site_url = "https://ariankordi.net/"
+
+    [params.headless_cms.backend]
+        name = "github"
+        repo = "ariankordi/ariankordi.net"
+
+        # https://github.com/Finxit-IT-Solutions/finxit-blog/blob/8197239483fbdc909c536847fe54f348ff676eef/hugo.toml#L35
+        [params.headless_cms.collections.blog]
+          name = "blog"
+          label = "Blog Post"
+          create = true
+          folder = "content/posts"
+          slug = "{{year}}-{{month}}-{{day}}-{{slug}}"
+
+          [params.headless_cms.collections.blog.sortable_fields]
+            fields = ["title", "date"]
+
+            [params.headless_cms.collections.blog.sortable_fields.default]
+              field = "date"
+              direction = "descending"
+
+          [[params.headless_cms.collections.blog.fields]]
+            label = "Title"
+            name = "title"
+            widget = "string"
+
+          [[params.headless_cms.collections.blog.fields]]
+            label = "Date"
+            name = "date"
+            widget = "datetime"
+            default = "{{now}}"
+            format = "YYYY-MM-DDTHH:mm:ssZ"
+
+          [[params.headless_cms.collections.blog.fields]]
+            label = "Body"
+            name = "body"
+            widget = "markdown"
+
+          [[params.headless_cms.collections.blog.fields]]
+            label = "Draft"
+            name = "draft"
+            widget = "boolean"
+            default = true
