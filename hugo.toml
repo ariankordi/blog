@@ -20,6 +20,10 @@ pluralizelisttitles = false
 [outputs]
     home = [ "HTML", "RSS", "HeadlessCMSConfig" ]
 
+[caches]
+    [caches.images]
+    dir = ':cacheDir/images'
+
 [params]
     author.name = "Arian Kordi"
 
