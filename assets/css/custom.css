@@ -2,3 +2,10 @@
   font-family: sans-serif, monospace;
   font-weight: 500;
 }
+
+a:active,
+.btn-light-dark:active,
+.social > svg:active {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Darker overlay */
+    color: #ddd; /* Optionally dim the text too */
+}
