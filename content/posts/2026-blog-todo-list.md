@@ -56,11 +56,21 @@ Or at least I hope. Will I actually write about half this stuff? Of course, time
   - _TODO:_ So many explanations to others and self-notes.
 * Hybrid Native/Web App Concept
   - [Discord discussion (private)](https://discord.com/channels/360173962862395392/567697014943514634/1338307487731814431)
-* FCL (Wii U)
+* Unused Wii U Mii clothing (FCL)
   - [Discord discovery (private)](https://discord.com/channels/360173962862395392/485919503369371648/1350946172537405491)
   - [_x.com_: FCL clothes extracted from FFLUtility](https://x.com/aaaarrrriaaannn/status/1901392235129680011)
+<!--
+Feb 2025 note: The drama has subsided with the addition of credits.
+The main characters in the drama have also apologized.
+So, I'm not chasing to write this as much as I did before,
+or to "prove a point" like I wanted to, but that doesn't
+mean I won't write anything at all about this.
+It just has to be framed as a learning experience that took
+up most of the year, rather than a finger-pointing drama post.
+
 * **Mii Creator Code Drama**
   - Dates of interest: 6/30, 8/11, 8/24
+-->
 * Wii U Mii Colors Plugin
   - [GitHub: ffl_mii_patcher_plugin](https://github.com/ariankordi/ffl_mii_patcher_plugin)
 * Mii Renderer Server Raylib

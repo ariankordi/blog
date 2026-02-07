@@ -3,7 +3,8 @@
 # https://noamlerner.com/posts/setting_up_a_hugo_blog_with_github_pages/
 # https://github.com/lukeorth/poison-demo-site
 
-baseURL = "https://ariankordi.net/"
+#baseURL = "https://ariankordi.net/"
+baseURL = "https://ariankordi.github.io/blog/"
 languageCode = "en-us"
 # theme = "poison" # expects it in themes/
 
@@ -41,8 +42,8 @@ pluralizelisttitles = false
     dark_mode = false
 
     menu = [
-        {Name = "About & Contact", URL = "/about/", HasChildren = false},
-        {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
+        {Name = "About & Contact", URL = "about", HasChildren = false},
+        {Name = "Posts", URL = "posts", Pre = "Recent", HasChildren = true, Limit = 5},
     ]
 
     github_url = "https://github.com/ariankordi"
@@ -97,11 +98,10 @@ pluralizelisttitles = false
 
 [params.headless_cms]
     engine = "sveltia"
-    site_url = "https://ariankordi.net/"
 
     [params.headless_cms.backend]
         name = "github"
-        repo = "ariankordi/ariankordi.net"
+        repo = "ariankordi/blog"
 
         # https://github.com/Finxit-IT-Solutions/finxit-blog/blob/8197239483fbdc909c536847fe54f348ff676eef/hugo.toml#L35
         [params.headless_cms.collections.blog]
