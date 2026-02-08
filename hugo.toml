@@ -96,6 +96,17 @@ pluralizelisttitles = false
 [params.meta]
     favicon = false
 
+# Giscus comments (https://giscus.app).
+[params.giscus]
+    enable = true
+    repo = "ariankordi/blog"
+    repo_id = "R_kgDORLDSKw"
+    category = "Announcements"
+    category_id = "DIC_kwDORLDSK84C2BtF"
+    mapping = "pathname"
+    theme = "preferred_color_scheme"
+
+
 [params.headless_cms]
     engine = "sveltia"
 

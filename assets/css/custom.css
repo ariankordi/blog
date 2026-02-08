@@ -3,6 +3,15 @@
   font-weight: 500;
 }
 
+.giscus,
+.giscus-frame {
+    margin-top: 35px;
+    width: 100%;
+}
+.giscus-frame--loading {
+    opacity: 0;
+}
+
 a:active,
 .btn-light-dark:active,
 .social > svg:active {

@@ -36,6 +36,15 @@ function applyTheme(theme) {
     if (window.REMARK42) {
         window.REMARK42.changeTheme(isDark ? 'dark' : 'light');
     }
+
+    // Sync Giscus if present.
+    const giscusFrame = document.querySelector('.giscus-frame');
+    if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: isDark ? 'dark' : 'light' } } },
+            'https://giscus.app'
+        );
+    }
 }
 
 /**
@@ -77,6 +86,23 @@ const loadHandler = () => {
 };
 // document.addEventListener('DOMContentLoaded', loadHandler);
 document.addEventListener('turbolinks:load', loadHandler);
+
+// When Giscus iframe loads, sync its theme with ours if user has a manual override.
+window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://giscus.app') return;
+    if (!event.data.giscus) return;
+    // On first message from Giscus, push our current theme if we have a stored override.
+    const stored = localStorage.getItem('theme');
+    if (stored) {
+        const giscusFrame = document.querySelector('.giscus-frame');
+        if (giscusFrame) {
+            giscusFrame.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: stored } } },
+                'https://giscus.app'
+            );
+        }
+    }
+});
 
 // React to device theme changes *only* if no user override exists.
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
