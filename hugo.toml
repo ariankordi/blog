@@ -103,7 +103,7 @@ pluralizelisttitles = false
     repo_id = "R_kgDORLDSKw"
     category = "Announcements"
     category_id = "DIC_kwDORLDSK84C2BtF"
-    mapping = "pathname"
+    mapping = "og:title"
     theme = "preferred_color_scheme"
 
 
