@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h1>404: Page Not Found</h1>
+<p class="lead">
+    Sorry, you either found a dead URL or tried to find something that doesn't exist.
+
+    <ul>
+        <li><a href="{{ .Site.BaseURL }}">Head back home</a>
+                to try finding what you need.</a></li>
+        <li><a href="{{ .Site.BaseURL }}about/">Contact me</a>
+                if you need a previously lost page.</a></li>
+    </ul>
+
+    <script>
+      if (location.pathname.match('^\/(mii|seth)')) {
+        location.href = '{{ .Site.BaseURL }}graveyard/#ariankordinetmii-ariankordinetseth-pf2mcomhash';
+      } else if (location.pathname.match('^\/(tutorial|aarch)')) {
+        location.href = '{{ .Site.BaseURL }}graveyard/';
+      }
+    </script>
+
+{{ end }}

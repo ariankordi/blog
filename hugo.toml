@@ -12,6 +12,8 @@ title = "Arian Kordi's Blog"
 #params.author.name = "Arian Kordi"
 pluralizelisttitles = false
 
+enableRobotsTXT = true
+
 [module]
     [[module.imports]]
         path = "github.com/lukeorth/poison"
@@ -21,11 +23,15 @@ pluralizelisttitles = false
 [outputs]
     home = [ "HTML", "RSS", "HeadlessCMSConfig" ]
 
+#[markup.goldmark.renderer]
+#    unsafe = true
+
 [caches]
     [caches.images]
     dir = ':cacheDir/images'
 
 [params]
+    front_page_content = ["posts"]
     author.name = "Arian Kordi"
 
     #brand_image = "/images/brand_image.jpg"

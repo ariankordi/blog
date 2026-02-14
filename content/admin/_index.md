@@ -1,4 +1,8 @@
-+++
-title = 'Your Headless CMS'
-layout = 'headless-cms'
-+++
+---
+title: 'Your Headless CMS'
+layout: 'headless-cms'
+
+sitemap:
+  disable: true
+robots: noindex
+---
