@@ -1,10 +1,10 @@
 {{/* https://blog.builtwithcaffeine.cloud/posts/hugo-url-redirect/ */}}
-{{/* https://github.com/gohugoio/hugo/blob/v0.155.3/tpl/tplimpl/embedded/templates/alias.html */}}
+{{/* https://github.com/gohugoio/hugo/blob/v0.154.3/tpl/tplimpl/embedded/templates/alias.html */}}
 <!DOCTYPE html>
 <html lang="{{ site.Language.LanguageCode }}">
   <head>
     <title>{{ .Params.target }}</title>
-    {{ with .OutputFormats.Canonical }}<link rel="{{ .Rel }}" href="{{ .Permalink }}">{{ end }}
+    <link rel="canonical" href="{{ .Permalink }}">
     <meta charset="utf-8">
     <meta http-equiv="refresh" content="0; url={{ .Params.target }}">
   </head>
