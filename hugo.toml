@@ -3,8 +3,10 @@
 # https://noamlerner.com/posts/setting_up_a_hugo_blog_with_github_pages/
 # https://github.com/lukeorth/poison-demo-site
 
-#baseURL = "https://ariankordi.net/"
-baseURL = "https://ariankordi.github.io/blog/"
+#baseURL = "https://ariankordi.net/" # final
+#baseURL = "https://ariankordi.github.io/blog/" # github dev
+baseURL = "https://ariankordi-blog.pages.dev/" # cloudflare dev
+
 languageCode = "en-us"
 # theme = "poison" # expects it in themes/
 
