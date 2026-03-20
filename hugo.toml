@@ -28,6 +28,12 @@ enableRobotsTXT = true
 #[markup.goldmark.renderer]
 #    unsafe = true
 
+[markup]
+    [markup.tableOfContents]
+        endLevel = 5
+        ordered = false
+        startLevel = 1
+
 [caches]
     [caches.images]
     dir = ':cacheDir/images'
