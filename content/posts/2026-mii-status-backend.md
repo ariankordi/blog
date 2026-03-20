@@ -55,7 +55,7 @@ This rewrite would be focused on flexibility. Not being the bestest and most fas
 
 This will be a much stronger foundation as an engine than what FFL-Testing used, but, one of the most important parts about this choice is that I already have some of the hardest parts complete right now in raylib!
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-001.jpeg "430px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-001.jpeg "430px")
 
 That's FFL in Raylib rendering the Mii model with the Wii U shader, and more notably Mii body scaling - things that took me 2 and 6 months respectively to achieve originally.
 
@@ -110,7 +110,7 @@ When I began in November I worked on some parts considered important, but neglec
 
 It took me just a week to get it in a working state, and I was pretty happy with it at first. It can export a head model without any GPU rendering in 0.7 ms!
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-002.jpeg)
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-002.jpeg)
 
 But in my excitement, I decided to put this on hold insisting I could come back to it without that much more work to complete. Guess what still isn't finished...
 
@@ -130,7 +130,7 @@ My last update was to calculate the amount of memory for shapes, but textures ar
 
 In order to make that work, I made this small test program that ran fully in the command-line without any GPU access. Exporting shapes worked perfectly as well as most textures, but the biggest issue had to do with the face.
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-003.jpeg "300px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-003.jpeg "300px")
 
 _Current result of "ffl2gltf1.cpp". But this export is fully done on the CPU._
 
@@ -142,7 +142,7 @@ _(Sorry that the bottom right image looks like crap, but hopefully you get the i
 
 Instead of making this "composite" texture, it is prooobably possible to instead bundle all of the little textures one by one.
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-005.jpeg "300px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-005.jpeg "300px")
 
 It's definitely possible since they do this on the DS, but they have never used this approach elsewhere. It may require custom modeling, and getting it to look exactly the same is another question entirely.
 
@@ -152,7 +152,7 @@ After a brief look I decided to try using HTML5 Canvas as a test, because it's e
 
 As you can see below, I actually was able to get the rectangles positioned perfectly, just needed textures there.
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-006.jpeg "400px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-006.jpeg "400px")
 
 ### GLHeadless
 
@@ -181,11 +181,11 @@ Only very recently did I get around to writing it "the way it's supposed to be".
 
 With shaders not fully working, pretty much all I have to show is… this. Incredible, right? Definitely an upgrade from where we were before.
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-007.jpeg "500px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-007.jpeg "500px")
 
 I should also mention that I’ve spent a bunch of time trying to get OpenGL debugging working nicely on the $3000 MacBook I wasted spent my money on, as I kept resorting to a Linux VM and don’t want to do that anymore.
 
-![](/uploads/apple-attachments/mii-2026-update-raylib-server-portio-n-2948-attachment-008.jpeg "250px")
+![](/uploads/mii-2026-update-raylib-server-portio-n-2948-attachment-008.jpeg "250px")
 
 _RenderDoc, the best graphics debugging tool I know of, doesn't officially support macOS. Fantastic. They also close PRs having to do with improving Mac support._
 

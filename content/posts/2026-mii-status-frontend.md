@@ -1,5 +1,5 @@
 ---
-title: "Thoughts on Mii Renderer (REAL) in 2026 - Part 1: Frontend"
+title: 'Thoughts on Mii Renderer (REAL) in 2026 - Part 1: Frontend'
 date: 2026-03-09T00:00:00-05:00
 draft: true
 linkTitle: 2026 Mii Status (Frontend)
@@ -15,7 +15,7 @@ It's been aching me to keep everything in my head for this long, so I'm going to
 
 I'm considering this project as two halves made up of the renderer server (backend) and the website (frontend). They have different stories and future directions, but I will start with the website. This... thing.
 
-![](/uploads/apple-attachments/Thoughts-on-Mii-Renderer-(REAL)-in-2026-2505-attachment-001.jpeg "450px")
+![](/uploads/Thoughts-on-Mii-Renderer-%28REAL%29-in-2026-2505-attachment-001.jpeg "450px")
 
 _The website, hosted at... [mii-unsecure.ariankordi.net.](https://mii-unsecure.ariankordi.net/)
 
@@ -30,13 +30,13 @@ _The website, hosted at... [mii-unsecure.ariankordi.net.](https://mii-unsecure.a
 
 By September 2024 (5 months in), I had some code for converting Mii data formats ready and wanted to add it to the site in some way. I ended up doing this, and you can see how versatile this became.
 
-![](/uploads/apple-attachments/Thoughts-on-Mii-Renderer-(REAL)-in-2026-2505-attachment-002.jpeg "400px")
+![](/uploads/Thoughts-on-Mii-Renderer-%28REAL%29-in-2026-2505-attachment-002.jpeg "400px")
 
 But, as you can see, I couldn't think of any better way to bolt this on at the time than to add a dropdown under every render. This was OK for the time, but definitely not the best UI.
 
 Why is it a problem? One of the more useful features, the "instructions", was just a link - that can't be super easy to find. Even later on, I added the most useful feature here which exported the Mii (head only) to a 3D model file. This was groundbreaking at the time and I've seen people using this for all sorts of purposes, but it's again hidden under a button.
 
-![](/uploads/apple-attachments/Thoughts-on-Mii-Renderer-(REAL)-in-2026-2505-attachment-003.jpeg "400px")
+![](/uploads/Thoughts-on-Mii-Renderer-%28REAL%29-in-2026-2505-attachment-003.jpeg "400px")
 
 It's clear that I was moving faster at writing code than designing an interface. The tool was definitely a little more than just a "renderer" at this point.
 
