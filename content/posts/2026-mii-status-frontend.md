@@ -7,22 +7,23 @@ linkTitle: 2026 Mii Status (Frontend)
 
 Most people know me for this project I started more than two whole years ago (yikes), which I gave the excellent name "Mii Renderer REAL!!!!!!!!!!!".
 
+![](/uploads/Thoughts-on-Mii-Renderer-%28REAL%29-in-2026-2505-attachment-001.jpeg "380px")
+*The website, hosted at... [mii-unsecure.ariankordi.net.](https://mii-unsecure.ariankordi.net/)*
+
 Since then, I've explored many different ideas for Mii related projects and have went down many rabbitholes for reverse engineering Miis, and there's always been more I've been wanting to make out of what I've learned.
+
+<!--more-->
 
 It's been aching me to keep everything in my head for this long, so I'm going to be (hopefully) posting about more of my new projects later on. For now, allow me to explain the status of my current projects.
 
-## The Renderer Website
+## The Renderer Website (Frontend)
 
-I'm considering this project as two halves made up of the renderer server (backend) and the website (frontend). They have different stories and future directions, but I will start with the website. This... thing.
-
-![](/uploads/Thoughts-on-Mii-Renderer-%28REAL%29-in-2026-2505-attachment-001.jpeg "450px")
-
-_The website, hosted at... [mii-unsecure.ariankordi.net.](https://mii-unsecure.ariankordi.net/)
+This project is considered as two halves: The renderer server (backend), and the website (frontend). They have different stories and future directions, but I will start with the website, shown above.
 
 * If you're not familiar, this tool takes Mii data as an input from various sources, has a bunch of options, and shows the results at the bottom.
-* This originally meant to be a better alternative to pf2m.com/tools/mii: the original "Mii Renderer" tool from 2017/2020.
-        - If you look at it that way, it has lots of advantages over the PF2M tool.
-        - Note that most work went into the renderer server itself, rather than the website.
+* This originally meant to be a better alternative to [pf2m.com/tools/mii](https://pf2m.com/tools/mii-2020/): the original "Mii Renderer" tool from 2017/2020.
+    - If you look at it that way, it has lots of advantages over the PF2M tool.
+    - Note that most work went into the renderer server itself, rather than the website.
 * Nowadays I see the site as more of a tech demo, which always had more potential to provide even more versatile and useful tools.
 * Every time I have to use my own site, it's a harsh reminder that my tool hasn't progressed with my own growth and understanding of all this. I almost feel guilty that "we" still have to use this.
 
@@ -54,47 +55,47 @@ Despite this being in my head for at least a year and a half, I unfortunately do
 
 I've went through my head for the top 6 features I'd want the new tool to have:
 
-1. Mii data editing (basic), separated conversion tools.
+1. Mii [data editing (basic)])(https://jsfiddle.net/arian_/dvnym03t/3/), separated conversion tools.
 
-        - Not a fancy UI-based editor, but a detailed one.
-        - Convert from/to all formats, plus to Wii by substituting incompatible parts.
+    - Not a fancy UI-based editor, but a detailed one.
+    - Convert from/to all formats, plus to Wii by substituting incompatible parts.
 
 2. Storage for Mii data (w/ groups? + local history?)
 3. Reusable Mii selector/importer for developers.
 4. Rendering UI improvements and features.
 
-        - More space-efficient, appealing interface.
-        - Bulk input data & image outputs.
-        - Wii U, Switch poses & camera controls?
-        - Render on client or server.
-        - 3D export separated/improved (more details later)
+    - More space-efficient, appealing interface.
+    - Bulk input data & image outputs.
+    - Wii U, Switch poses & camera controls?
+    - Render on client or server.
+    - 3D export separated/improved (more details later)
 
 5. Importing: More options and multiple inputs.
 
-        - From console Mii DB files, game saves?
-        - Wii Remote (Web HID), write to amiibo
-        - Online: Kaerutomo (R.I.P.), WiiLink CMOC, SMM2? Miitopia codes?
+    - From console [Mii DB files](https://jsfiddle.net/arian_/tpdu640x/11/), game saves?
+    - Wii Remote ([Web HID](https://jsfiddle.net/arian_/4Lvxf3s0/)), write to amiibo
+    - Online: [Kaerutomo](https://mii-unsecure.ariankordi.net/swagger/index.html#/Fetch%20Mii%20Data/get_miitomo_get_player_data__player_id_) (R.I.P.), [WiiLink CMOC](https://mii-unsecure.ariankordi.net/swagger/index.html#/Fetch%20Mii%20Data/get_cmoc_lookup__cmoc_code_), [SMM2](https://github.com/TheGreatRambler/MariOver)? Miitopia codes?
 
 6. Electron-based PC/mobile app that works offline.
 
-        - More permission than a website, allowing e.g. use of NFC in phones.
-        - If reverse engineered, local Wi-Fi transfers may even be possible (very TBD).
+    - More permission than a website, allowing e.g. use of NFC in phones.
+    - If reverse engineered, local Wi-Fi transfers may even be possible (very TBD).
 
 Does that seem like a big list? Because most of it has already been done before. Even if they are in worse tools.
 
 <details>
 <summary>
-I came up with even more ideas, though these would be less useful and done later.
+<strong>I came up with even more ideas, though these would be less useful and done later.</strong>
 </summary>
 
 * Random Mii generator that matches the "look-alike" feature
 * Generating instructions to re-create a Mii on the Wii, 3DS, Wii U, Miitomo, Mii Studio, Switch - exportable to an image or HTML page
-        - "Mii to Switch Instructions" already exists, but can be rewritten for cleaner code.
-        - There isn't yet an instructions generator for all consoles' editors.
+    - "Mii to Switch Instructions" already exists, but can be rewritten for cleaner code.
+    - There isn't yet an instructions generator for all consoles' editors.
 * Drawing Miis with clothing/headwear from Miitomo, Tomodachi Life.
-        - Perhaps even custom user-provided models?
+    - Perhaps even custom user-provided models?
 * Reversing the Wii/3DS/Switch local Wi-Fi transferring (UDS, LDN, NiFi?) like stated before.
-        - Requires Linux usage, but perhaps modded consoles can work too.
+    - Requires Linux usage, but perhaps modded consoles can work too.
 * One tool to un-pack/re-pack Mii shape and texture resources from RFL, CFL, FFL, Switch.
 * Scene to import and position multiple Miis with features like Miifoto (idea is TBD).
 

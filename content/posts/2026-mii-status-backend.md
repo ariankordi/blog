@@ -11,6 +11,8 @@ linkTitle: 2026 Mii Status (Backend)
 
 You know when people talk about how those "temporary solutions" are always the ones that stick around the longest? Yeah… this is one of those.
 
+<!--more-->
+
 I’m actually in the progress of writing about the development process and reverse engineering that went into this thing, but until then, here’s the relevant details:
 
 - The server was made in mid-2024, reused from a literal test program that Abood made when he decompiled FFL (Wii U Mii renderer).

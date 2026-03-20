@@ -7,9 +7,7 @@ title = 'About & Contact'
 <!-- TODO: This will not actually update on the day. -->
 <!-- It will need to be 1. also checked and replaced in JS, or
      2. schedule a GitHub Action to rebuild the site on my birthday. -->
-Hi. My name is **Arian Kordi**, if you couldn't already tell. I am {{< age "2004-01-12" >}} years old.
-
-_(Pronounce: arr-E-on)_
+Hi. My name is **Arian Kordi** (pronounced _ah-ree-AHN_). I am {{< age "2004-01-12" >}} years old.
 
 I spend most of my time coding or gaming, but I really enjoy reverse engineering anything related to Nintendo.
 
@@ -19,6 +17,7 @@ I spend most of my time coding or gaming, but I really enjoy reverse engineering
   - I usually respond in minutes and I welcome:
     * Basic or "stupid" questions.
     * Any Mii data or rendering topics.
+    * Criticism (Not just what, but why)
     * Anything else to add to my otherwise boring day.
 #### Games
 * [Nintendo friend code: SW-1279-9389-3976](https://lounge.nintendo.com/friendcode/1279-9389-3976/DRMGtKbyZ6) (I play Splatoon 3)
