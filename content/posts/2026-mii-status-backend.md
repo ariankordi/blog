@@ -7,6 +7,8 @@ linkTitle: 2026 Mii Status (Backend)
 
 _This is a continuation of the previous post on the frontend/website. [Read it here.]( {{< relref "posts/2026-mii-status-frontend" >}})_
 
+---
+
 ## Mii Renderer Server ("FFL-Testing")
 
 ![](/uploads/20260319-203257.png "600px")

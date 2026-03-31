@@ -133,7 +133,7 @@ The goal of Fusion isn't to be the best language, but rather to write common lib
 
 ![](/uploads/20260319-010250.png)
 
-[_MiiToStudio.fu](https://github.com/ariankordi/mii-fusion-experiments/blob/main/MiiToStudio/MiiToStudio.fu) transpiled using the [Fusion Playground](https://fusion-lang.org/playground). By the way, this tool exists because [Fusion is written in Fusion](https://github.com/fusionlanguage/fut/issues/48#issuecomment-1701294371)._
+_[MiiToStudio.fu](https://github.com/ariankordi/mii-fusion-experiments/blob/main/MiiToStudio/MiiToStudio.fu) transpiled using the [Fusion Playground](https://fusion-lang.org/playground). By the way, this tool exists because [Fusion is written in Fusion](https://github.com/fusionlanguage/fut/issues/48#issuecomment-1701294371)._
 
 Amazing, right? If it sounds too good to be true, well… it kind of is. By necessity, it's limited to simple code. I [began playing with this in April 2025](https://github.com/ariankordi/mii-fusion-experiments/commit/f42220da8a8d265e4d83de995f651b4b2d94ed95) but moved kinda slowly.
 
