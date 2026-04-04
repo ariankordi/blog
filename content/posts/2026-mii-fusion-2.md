@@ -261,7 +261,12 @@ I've been working with the Wii U version and all of its flaws for a year, and I 
 It loads shapes and textures, calculates positions and colors, and tells the GPU what to draw. It's tightly coupled to each platform's API (GX2 on Wii U, GX on Wii) making it far less portable than it should be.
 
 When Abood ported the FFL decomp to PC, he replaced the GX2 requirement with (effectively) OpenGL. This worked for a while, but when it came time to make FFLSharp and FFL.js, I had to tear this requirement out and it was not pretty.
-    **Compare this to my Fusion code that works in OpenGL (via raylib) and WebGPU (via Three.js).**
+
+The Fusion code doesn't care.
+* There is a working example using shapes from RFL_Res.dat (Wii )
+I have working examples using `RFLResource` (Wii shape data) rendering in both raylib (OpenGL/C) and Three.js (WebGPU/JS), on top of having the FFL/NX to glTF exporters. Same Fusion parsing logic, totally different callers.
+
+[IMAGE NEEDED: RFLResource rendering in raylib and Three.js side by side]
 
 The approach I plan to take in Fusion is to separate model/texture data from rendering entirely. Fusion handles all pure logic: reading resources, assigning colors, and calculating coordinates for the facial features (mask texture).
 
@@ -272,6 +277,10 @@ This way, it doesn't matter if you're using: raw OpenGL, Unity, Godot, Three.js,
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-016.jpeg "300px")
 
 _The "CharModelHelper" class tells you which IDs to load, instead of the raw shape/color/texture data like FFL does._
+
+There's one piece that took me a while to appreciate: the "mask". This is the facial texture — a composite of your eyebrows, eyes, nose, and mouth, positioned on the face geometry using specific UV math derived from the CharInfo values. FFL computes this internally and never exposes it. I reverse engineered that math and put it in Fusion (`Mask.fu`), verified coordinate-by-coordinate against data captured from a Wii U game in RenderDoc.
+
+This matters beyond just "it works." Miitomo used the exact same FFL internally but with additional expression table entries to support its custom emotions. Miitopia adds new face elements entirely. Tomodachi Life on Switch tweaks parameters. All of that is possible when the math is yours to control — something you can never do when it's buried inside the Face Library.
 
 But if a Mii model is just that, a 3D model, can we export it to an open-source format that you can just.. load?
 
@@ -289,21 +298,47 @@ At the moment this is only capable of exporting one model, but I am planning mor
 
 If I am able to make this work, this would be the ultimate universal Mii rendering solution. But, let's give it some time and see if I actually get to this point.
 
-## Sigh. (REDO BECAUSE THIS SUCKS)
+## What exists right now
 
-For how long I've been thinking about this, it's definitely been going slower than I'd prefer.
+To keep this grounded, here's a rough snapshot of where things actually stand.
 
-Part of it is scope: what started as a “nice Mii data library” soon had rendering added to it, and has grown to include resource parsers, a glTF encoder, AES, texture swizzling, and more.
+**Done and tested:**
 
-I always keep telling myself that “works” is not good enough. I could paste code from Ghidra, see it work, and move on, but I had to think of how to over-engineer structs when what I had worked. At the same time, I keep chasing new features rather than refining and completing what’s there.
+- **Mii data decoding/encoding**: Ver3StoreData (3DS/Wii U), conversion through to Mii Studio format. CRC-16 validation, UTF-16 nicknames, the whole stack. Proven to round-trip correctly.
+- **QR code encryption**: AES-128 in pure Fusion, so encrypted 3DS Mii QR codes decrypt entirely client-side — no native dependency.
+- **Random Mii (look-alike generator)**: Decompiled from FFL by me, independently verified 1:1 against the real implementation running in an emulator.
+- **Shape resources**: Can parse face shapes from NX (Switch), FFL (Wii U), RFL (Wii), and CFL (3DS). Each format has its own quirks — endianness, weird vertex indexing in RFL, compressed blocks in NX.
+- **Rendering math**: Color lookup tables extracted from FFL, CharModelHelper for model positioning, Mask.fu for face UV coordinates.
+- **glTF exporter**: Written entirely in Fusion. Exports shape data, works in C and JS both.
 
-Part of it is me. I have a habit of waiting until something is absolutely ready before showing anyone, and "absolutely ready" keeps moving.
+**In progress / left:**
 
-There's also the experience of sharing stuff before I’m ready, then having to watch an incomplete thing get picked up and built on and now you can never fix the parts that were wrong. I've seen that happen enough times that I'm cautious.
+- NX CharInfo class and Switch-specific format conversions.
+- Texture reading — shapes work, textures don't yet. Deswizzling is platform-specific and the main remaining blocker.
+- Getting rendering end-to-end: Mask.fu and CharModelHelper exist but haven't been connected to actual output.
+- Expressions: the table exists in FFL, the deduplication logic doesn't have a clean home yet.
 
-For now, all of the code is on my machine. It will be out when it's properly testable, documented, and has examples that actually work. That's the goal. The core infrastructure is there; what's left is
+**Still unknown:**
 
-testing coverage, the texture side of things, and getting the rendering path from point A to point B in a way that's actually useful.
+- What level of abstraction makes sense for callers. Less hand-holding = more flexibility but more work for whoever uses this.
+- Whether some of the texture work even belongs in Fusion, or should live in caller code.
+
+All of this is local for now. I'm the only one working on it, which means there's no external deadline, no pull requests, no issue tracker — just me deciding when something is ready. The plan: finish the rendering pipeline using the raylib server as a testbed, then release together. That's the target.
+
+
+## Sigh.
+
+For how long I've had this planned out, it's going slower than I'd like. A few reasons, honestly:
+
+- **Scope keeps growing.** What started as "a Mii data library" now includes resource parsers, a glTF encoder, AES, rendering math, and texture handling is still ahead. I keep telling myself it's all connected — and it is — but "connected" doesn't make it faster.
+- **"Works" is never good enough.** There was a point early on where I had a method for handling binary structs that worked fine. Instead of moving on, I spent months looking for a more principled solution. I knew about the Ghidra approach from December 2024 and didn't use it until April. That's on me.
+- **No external pressure.** Working alone means nothing forces a decision. I can decide something isn't ready indefinitely, and frequently do.
+
+None of this is going to stop the project. But it explains the timeline.
+
+On why I keep going at all: there's a version of this where I just accept that good enough tools already exist and move on. I don't believe that, but I understand why someone would. What actually keeps me going is something closer to — people are already trying to solve this. Badly, sometimes. Copying old scripts with known bugs, wrapping my server in a Python library and calling it a renderer, writing their own struct definitions by guessing at the layout. The demand is there. The quality isn't.
+
+If I document this thoroughly, release it openly, and it's actually correct — it'll still be there in five years. Tools that get closed off, abandoned, or locked behind a Discord membership don't survive like that. That's the long game, and I think it's worth playing.
 
 ## Conclusion
 
