@@ -2,7 +2,7 @@
 title: 'The Mii library in any language (Fusion)'
 date: 2026-03-22T00:00:00-05:00
 draft: true
-linkTitle: Mii Fusion Manifesto
+linkTitle: Mii Fusion Manifesto (old)
 ---
 
 It doesn't exist. Sorry if I clickbaited you.
