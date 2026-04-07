@@ -49,8 +49,8 @@ enableRobotsTXT = true
     # description = 'A pragmatic Hugo theme for bloggers. Based on the classic <a href="https://github.com/poole/hyde" target="_blank">Hyde</a> design by <a href="https://github.com/mdo" target="_blank">@mdo</a>'
     #brand = "Arian's Blog"
     #description = "I finally have one."
-    brand = "Arian Kordi"
-    description = "Welcome to the blog."
+    brand = "Arian's Blog"
+    #description = "Welcome to the blog."
 
     # No, no, no. Needs to do this dynamically.
     dark_mode = false

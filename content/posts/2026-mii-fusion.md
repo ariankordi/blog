@@ -264,7 +264,7 @@ If I am able to finish this, it would be the ultimate universal Mii rendering so
 <details>
 
 <summary>
-    This section is a bit boring, so click here to reveal it.
+    <b>This section is a bit boring, so click here to reveal it.</b>
 </summary>
 
 Accuracy is something I've been obsessed with since the beginning. I didn't want to make another "I guessed at the field layout and it probably works" implementation. I wanted to definitively say: this is right, and this is exactly why.

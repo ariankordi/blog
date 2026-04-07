@@ -113,7 +113,7 @@ To have all of these tools available under one roof and "do it right" this time 
 
 This would separate a one-off toy from something that'll help with many tools I and others make from now on. Accuracy and correctness would also be a priority, because I've seen issues with previous Kaitai-based solutions.
 
-![](/uploads/20260319-005254.jpg)
+![](/uploads/20260319-005254.jpg "550px")
 
 _Issues with "mii2studio" code and Kaitai Structs. Other code shares the same bugs as a result of careless copying. [My fix for glassY](https://github.com/HEYimHeroic/mii2studio/pull/7) and other PRs never got merged._
 
@@ -131,7 +131,7 @@ In March 2025, I found that there actually COULD be a solution to this dilemma. 
 
 The goal of Fusion isn't to be the best language, but rather to write common library code (not applications) usable in multiple languages. It supports C#, Python, Java, Swift, C++, JavaScript, and notably TypeScript and pure C (unsupported by [Haxe](https://haxe.org)).
 
-![](/uploads/20260319-010250.png)
+![](/uploads/20260319-010250.png "650px")
 
 _[MiiToStudio.fu](https://github.com/ariankordi/mii-fusion-experiments/blob/main/MiiToStudio/MiiToStudio.fu) transpiled using the [Fusion Playground](https://fusion-lang.org/playground). By the way, this tool exists because [Fusion is written in Fusion](https://github.com/fusionlanguage/fut/issues/48#issuecomment-1701294371)._
 

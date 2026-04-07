@@ -19,6 +19,17 @@ const tocHandler = () => {
             }
         }
         for (const entry of entries) {
+            /*
+            console.log({
+                id: entry.target.id,
+                isIntersecting: entry.isIntersecting,
+                ratio: entry.intersectionRatio,
+                time: entry.time,          // ms since page load
+                rootBounds: entry.rootBounds,
+                boundingClientRect: entry.boundingClientRect,
+            });
+            */
+
             if (activeElement) {
                 for (const node of getItems()) {
                     node.classList.add('inactive');
@@ -44,6 +55,10 @@ const tocHandler = () => {
       const headings = post.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
       for (const section of headings) {
           observer.observe(section);
+      }
+      const anchors = getItems('a');
+      for (const anchor of anchors) {
+        anchor.dataset['turbo'] = 'false';
       }
     }
 };

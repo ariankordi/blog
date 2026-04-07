@@ -12,12 +12,3 @@
 {{ end -}}
 
 <meta name="turbo-cache-control" content="no-cache">
-
-<script type="application/javascript" data-turbo-eval="false">
-  // Turbolinks.start();
-  const turboInitHandler = () => {
-    Turbo.config.drive.progressBarDelay = 250;
-    document.removeEventListener('turbo:load', turboInitHandler);
-  }
-  document.addEventListener('turbo:load', turboInitHandler);
-</script>
