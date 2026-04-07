@@ -49,4 +49,4 @@ const tocHandler = () => {
 };
 
 // window.addEventListener('DOMContentLoaded', tocHandler);
-document.addEventListener('turbolinks:load', tocHandler);
+document.addEventListener('turbo:load', tocHandler);

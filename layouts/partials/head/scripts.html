@@ -1,28 +1,5 @@
-{{/* Personal/custom script for light/dark mode and tabs */}}
-{{ $js := slice
-      (resources.Get "js/light_dark.js")
-      (resources.Get "js/tabs.js") }}
-
-{{/* Turbolinks JS */}}
-{{ $js = $js | append (resources.Get "js/turbolinks.min.js") }}
-
-{{/* Locally hosted code for KaTeX */}}
-{{ $js = $js | append
-      (resources.Get "js/lib/katex.js")
-      (resources.Get "js/lib/auto-render.js") }}
-
-{{/* Personal/custom scripts for KaTeX */}}
-{{ $js = $js | append (resources.Get "js/katex.js") }}
-
-{{/* Personal/custom scripts for table of contents */}}
-{{ if not .Site.Params.hideToc }}
-    {{ $js = $js | append (resources.Get "js/toc.js") }}
-{{ end }}
-
-{{/* Personal/custom scripts for codeblocks */}}
-{{ $js = $js | append (resources.Get "js/codeblock.js") }}
-
-{{ $js_bundle := $js | resources.Concat "js/bundle.js" | minify | fingerprint }}
+{{ $jsBuildOpts := dict "minify" false "sourceMap" "linked" }}
+{{ $js_bundle := resources.Get "js/main.js" | js.Build $jsBuildOpts | fingerprint }}
 
 <script defer language="javascript" type="text/javascript" src="{{ $js_bundle.RelPermalink }}"></script>
 
@@ -34,13 +11,13 @@
   {{ template "_internal/google_analytics.html" . -}}
 {{ end -}}
 
-<meta name="turbolinks-cache-control" content="no-cache">
+<meta name="turbo-cache-control" content="no-cache">
 
-<script type="application/javascript" data-turbolinks-eval="false">
+<script type="application/javascript" data-turbo-eval="false">
   // Turbolinks.start();
-  const turbolinksInitHandler = () => {
-    Turbolinks.setProgressBarDelay(250);
-    document.removeEventListener('turbolinks:load', turbolinksInitHandler);
+  const turboInitHandler = () => {
+    Turbo.config.drive.progressBarDelay = 250;
+    document.removeEventListener('turbo:load', turboInitHandler);
   }
-  document.addEventListener('turbolinks:load', turbolinksInitHandler);
+  document.addEventListener('turbo:load', turboInitHandler);
 </script>
