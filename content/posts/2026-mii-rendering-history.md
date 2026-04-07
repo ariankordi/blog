@@ -1,7 +1,7 @@
 ---
 title: (WIP) How Mii rendering works/History of Mii Renderer REAL
 date: 2026-02-22T04:00:00-04:00
-draft: true
+draft: false
 linkTitle: (WIP) Mii rendering history
 ---
 
