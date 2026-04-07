@@ -9,11 +9,6 @@ This is continued from [my other post on where my Mii projects stand]({{< relref
 
 ---
 
-* REVISE with LINKS
-* BEFORE PUBLISHING BOTH POSTS: consider OPTIMIZING IMAGES and FILENAMES?????
-
----
-
 ## Miis are deceptively complicated
 
 On the surface? A cute Nintendo character creator. Choose a face shape, eye type, some sliders, done. Behind that, there's an entire hidden world that nobody fully appreciates until they sit down and try to read the raw data.
@@ -36,7 +31,7 @@ All formats overlap, but have unique fields:
 
 * Switch has more colors that have to be converted up and down
 * Various fields such as sharing and creator name were removed on Switch
-* The "Mii ID" further packs creation time and console type in some formats
+* The "Mii ID" further [packs creation time](https://jsfiddle.net/arian_/vhnmrgp3/5/) and console type in some formats
 
 Then there's the format for the Nintendo Account web editor (obfuscated), QR codes (AES-CCM encrypted), and the local databases that differ per console.
 
@@ -68,7 +63,7 @@ _Four Mii implementations. Barely anything in common._
 
 But one of the worst parts is that they end up copying from each other, including the bugs.
 
-There's a widely-used script called mii2studio.py that has an error in how it maps mouth colors. That same bug has since spread to who knows how many downstream implementations that used it as a reference.
+There's a widely-used script called [mii2studio.py](https://github.com/HEYimHeroic/mii2studio/blob/master/mii2studio.py) that has an error in how it maps mouth colors. That same bug has since spread to who knows how many downstream implementations that used it as a reference.
 Same story with Mii structs on 3dbrew.org/wiibrew.org that always get copy-pasted with wrong field names into new projects.
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-005.jpeg)
@@ -83,9 +78,9 @@ What we need is a library grounded in decompiled Nintendo code. Real field names
 
 If I'm going to write a _"definitive"_ Mii library, what language do we write it in? This seems like the obvious first question but it took me embarrassingly long to think through properly.
 
-My first instinct was JavaScript, because it works for convenient web tools and desktops/servers. But I've already written Mii data code in C++ for the renderer server, JS for the website, Go for an earlier web server...
+My first instinct was JavaScript, because it works for convenient web tools and desktops/servers. But I've already written Mii data code [in C++](https://github.com/ariankordi/FFL-Testing/blob/renderer-server-prototype/src/DataUtils.cpp) for the renderer server, [JS](https://github.com/ariankordi/nwf-mii-cemu-toy/blob/ffl-renderer-proto-integrate/assets/data-conversion.js) for the website, [Go](https://github.com/ariankordi/nwf-mii-cemu-toy/blob/ffl-renderer-proto-integrate/mii2studio/mii2studio.go) for an earlier web server...
 
-Others have written Mii code in Python, C#, Rust, and more. Would I end up having to write and maintain 7 different versions?
+Others have written Mii code in [Python](https://github.com/HEYimHeroic/mii2studio/blob/master/mii2studio.py), [C#](https://github.com/TeamWheelWizard/WheelWizard/blob/c967554f3918bfb8ee1c52450a3ced9877e8db99/WheelWizard/Features/WiiManagement/MiiManagement/Domain/Mii/Mii.cs#L4), [Rust](https://gitlab.com/3ds-netpass/netpass-server/-/blob/30ab51867a600acd3572dbc66050e15ebeba906f/src/types/mii.rs#L307), and more. Would I end up having to write and maintain 7 different versions?
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-006.jpeg)
 
@@ -99,7 +94,7 @@ It may even end this cycle of duplicating the same code over and over again, bec
 
 ![](/uploads/20260319-010250.png "450px")
 
-_MiiToStudio.fu transpiled using the Fusion Playground._
+_[MiiToStudio.fu](https://github.com/ariankordi/mii-fusion-experiments/blob/main/MiiToStudio/MiiToStudio.fu) transpiled using the [Fusion Playground](https://fusion-lang.org/playground)._
 
 If it sounds too good to be true... yes, it kind of is. But not in the ways you'd expect.
 
@@ -119,7 +114,7 @@ But you have to understand that Mii data is just a raw array of numbers. How do 
 
 *Nothing human-readable here.*
 
-The way the programmers originally dealt with this is with a feature C/C++ has called “structs”. We define each member of the data and its size, and we can read/write fields just like any other variable.
+The way the programmers originally dealt with this is with a feature C/C++ has called "structs". We define each member of the data and its size, and we can read/write fields just like any other variable.
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-026.jpeg "500px")
 
@@ -127,7 +122,7 @@ The way the programmers originally dealt with this is with a feature C/C++ has c
 
 This works great, but most programming languages don't have the concept of "structs", including Fusion. What do we do instead? We can still read that array of numbers, but we need to make sure the right index lines up with the right name.
 
-It gets even messier when there’s fields smaller than a byte large (bitfields), which most Mii formats have. You have to do some bit-shifting that can get confusing really fast.
+It gets even messier when there's fields smaller than a byte large (bitfields), which most Mii formats have. You have to do some bit-shifting that can get confusing really fast.
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-027.jpeg "300px")
 
@@ -160,7 +155,7 @@ For Mii data/rendering, here's what gets handled in the user's code:
 - **Data loading**: Your code reads bytes from a file or network, and you pass in a buffer. Fine, actually cleaner.
 - **Decompression** (for some resource files): You provide a zlib implementation in your target language via an abstract class interface.
     - You have the freedom to choose a library that does the same job with smaller or faster code.
-- **AES encryption** (for QR codes): I was able to port an AES implementation to native Fusion code, so you can use that and it’ll “just work” but you can also substitute your own.
+- **AES encryption** (for QR codes): I was able to port an AES implementation to native Fusion code, so you can use that and it'll "just work" but you can also substitute your own.
 - **Async code** (JS, C#): If something needs async (anything on this list), the goal is for it to not go through Fusion at all.
     - Example: If you're using the async `CompressionStream` API on the web, we provide the raw compressed data and you fully handle that part.
 
@@ -201,13 +196,13 @@ Let me get this out of the way: The "Face Library" on Nintendo consoles (FFL, RF
 
 I've been working with the Wii U version and all of its flaws for a year, and I can tell you that's what it is at its core.
 
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-079.jpeg)
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-079.jpeg "550px")
 
 *A Mii head model imported into Blender. It was created by FFL using the textures (shown on the right) and shapes in the resource file.*
 
 It loads shapes and textures, calculates positioning and colors, and sends draw commands. It's tightly coupled to each platform's graphics API (GX2 on Wii U, GX on Wii) making it far less portable than it should be.
 
-When Abood ported the FFL decomp to PC, that requirement was replaced with (effectively) OpenGL but still not removed. I had to spend a lot of time tearing this out when making FFLSharp and FFL.js **add links**, and it was not pretty.
+When Abood ported the [FFL decomp](https://github.com/aboood40091/ffl/tree/nsmbu-win-port) to PC, that requirement was replaced with (effectively) OpenGL but still not removed. I had to spend a lot of time [tearing this out](https://github.com/ariankordi/ffl/commit/ec5f46ffd13686ef573d3c4d5f04ba9bd8904e25) when making [FFLSharp](https://github.com/ariankordi/FFLSharp) and [FFL.js](https://github.com/ariankordi/FFL.js), and it was not pretty.
 
 In comparison to my Fusion code, it doesn't care.
 
@@ -218,7 +213,7 @@ In comparison to my Fusion code, it doesn't care.
 
 Same Fusion parsing logic, totally different callers.
 
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-080.jpeg)
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-080.jpeg "600px")
 
 *Left = Rendering with raylib in C, Right = rendering with Three.js in JS.*
 
@@ -234,9 +229,9 @@ This way, it doesn't matter if you're using: raw OpenGL, Unity, Godot, Three.js,
 
 But if a Mii model is just that, a 3D model, can we export it to an open-source format that you can just.. load?
 
-I've already made a Mii to glTF exporter usable on my website **add link**, though I was able to take this further by making a FULLY standalone exporter for the glTF 3D model format, from scratch, in pure Fusion.
+I've already made a Mii to glTF exporter usable on [my website](https://mii-unsecure.ariankordi.net/), though I was able to take this further by making a FULLY standalone exporter for the glTF 3D model format, from scratch, in pure Fusion.
 
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-082.jpeg)
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-082.jpeg "600px")
 
 *Pure Fusion code exporting a glTF model of the hair mesh. Left = From FFLResMiddle.dat in C, Right = from Switch ShapeHigh.dat in JS. Two languages, same code.*
 
@@ -258,20 +253,20 @@ If I am able to finish this, it would be the ultimate universal Mii rendering so
     This section is a bit boring, so click here to reveal it.
 </summary>
 
-Accuracy is something I’ve been obsessed with since the beginning. I didn't want to make another "I guessed at the field layout and it probably works" implementation. I wanted to definitively say: this is right, and this is exactly why.
+Accuracy is something I've been obsessed with since the beginning. I didn't want to make another "I guessed at the field layout and it probably works" implementation. I wanted to definitively say: this is right, and this is exactly why.
 
 - **Decompiled source**: Where possible, I reverse directly from the original binary. Algorithms (random Miis), lookup tables, and struct fields are all exact.
-    - I'm not even trusting the existing FFL decomp for this (sorry Abood) for a few reasons, and besides, I've gathered more of this:
+    - I'm not even trusting the [existing FFL decomp](https://github.com/aboood40091/ffl) for this (sorry Abood) for a few reasons, and besides, I've gathered more of this:
     - **Debug info** is a treasure trove when available, and for most Face Library versions it is. This gives us the exact function names, and sometimes field/variable names.
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-011.jpeg "550px")
 
 *dwarfdump + generated header from a debug version of CFL. This is the most thorough kind of debug info.*
 
-- **Table extraction**: Occasionally there are lookup tables needed for things like colors, conversion, or the random Mii (“look-alike”) feature.
+- **Table extraction**: Occasionally there are lookup tables needed for things like colors, conversion, or the random Mii ("look-alike") feature.
 - **Extraction scripts**: These usually get extracted either manually or in Ghidra, but I wrote scripts that extract these byte-for-byte directly from binaries.
     - The scripts also make it easier to do further conversion, e.g. converting colors from floats (decimal-point) to plain numbers (0xRRGGBB).
-    - Given that these tables take up room, there’s potential to shrink them by using RGB565 (16-bit).
+    - Given that these tables take up room, there's potential to shrink them by using RGB565 (16-bit).
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-012.jpeg "500px")
 
@@ -279,22 +274,17 @@ _Extraction scripts doing their thing. Colors are converted from float to 0xRRGG
 
 - **Testing against real code**
   - I validated my random Mii implementation by running the same seed through my Fusion code versus an emulator that executed the function in FFL directly.
-  - My random Mii code matches across thousands of rounds. That’s the standard I want for everything.
+  - My random Mii code matches across thousands of rounds. That's the standard I want for everything.
 
 ![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-013.jpeg "550px")
+_Left: Python + Unicorn emulating the random Mii function. Right: Fusion code producing the same result (notice "1df4")._
 
-_Left side: Python script using unicorn to emulate the random Mii function._
 
-_Right: Fusion code producing the same result. Notice "1df4" in the third result._
-
-_This FFLiDatabaseRandom decompilation is from scratch by me, since I noticed a mistake in Abood's version._
-
-- **Unit tests**: If this sounds lame, you’re right. This is mostly the kind of thing huge companies do.
-  - In fact, the Switch Face Library has unit tests.
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-014.jpeg "300px")
+- **Unit tests**: If this sounds lame, you're right. This is mostly the kind of thing huge companies do.
+  - In fact, the Switch Face Library has unit tests. See?
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-014.jpeg "350px")
   - For my renderer server, I remember features constantly breaking whenever I made changes. This would prevent that.
-  - Fusion doesn’t have its own test framework, but to run the test in all languages we can make a simple program for each test case and run in every language.
+  - Fusion doesn't have its own test framework, but to run the test in all languages we can make a simple program for each test case and run in every language.
       * Coverage can be measured in an individual language like JS, C#, C++. I would love to eventually have high coverage.
   - Example: There is a test for facial feature positioning (mask) where the exact coordinates were captured from a Wii U game in RenderDoc, and it matches exactly.
 
@@ -315,48 +305,48 @@ Here's my reality check for where I am at overall.
 * **Mii QR codes**: Encryption/decryption works, as well as having an AES-128 implementation in pure Fusion.
   * Will probably rewrite based on public domain code.
 * **Random Mii (look-alike) generator**: Decompiled from FFL into Fusion and verified to have identical results.
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-083.jpeg)
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-083.jpeg "550px")
 
 ### Done: Rendering
 
 - **Mii shape resources**: There are parsers for Switch ShapeHigh/Mid.dat, FFLResHigh/Middle.dat (not AFL yet), RFL_Res.dat (Wii), and CFL_Res.dat (3DS). Shapes only for now.
-  - This includes the RFL "display list"/primitives quirk.
+  - This includes the RFL ["display list"/primitives](https://github.com/koopthekoopa/RFL/blob/fe6bc4b17e0fe80732d82210b89a1978faac9db5/source/RFL_Model.c#L1043-L1069) quirk.
 - **glTF exporter**: Exports a single shape from FFL/NX resources in pure Fusion. Not very useful without all head meshes.
 - **Shape rendering math**: Color tables from FFL/CFL (identical), eye/brow rotation offsets, head model shape positioning (CharModelHelper). Shape rendering is fully covered and good.
   - These along with the RFL/CFL parsers were used to help fully reproduce the Wii and 3DS lighting styles ("shaders").
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-084.jpeg)
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-084.jpeg "550px")
   - (These will be released for FFL.js soon for all -2 users, and for the renderer server as soon as I get to that rewrite.)
 - **Face texture (mask)**: Accurately decompiled, vertex positions fully match FFL via a test.
-    - Remember my glTF exporter rewrite **add link**? I've added the ability to export facial textures DIRECTLY - no render target. It's all possible because of this Fusion implementation.
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-085.jpeg)
+    - Remember my [glTF exporter rewrite]({{< relref "posts/2026-mii-status-backend" >}}#new-gltf-exporter)? I've added the ability to export facial textures DIRECTLY - no render target. It's all possible because of this Fusion implementation.
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-085.jpeg "550px")
   - I would also like to go on a little side tangent and mention that this logic was previously buried within the Face Library, leaving the face totally un-customizable for years.
       * Allowing the user to customize this would enable:
-      * More expressions (Miitomo), new face elements entirely (Miitopia)
+      * More [expressions (Miitomo)](https://github.com/ariankordi/ffl/commit/2bdfc351f16af84e279956d57e2be5cb42c946e8), new face elements entirely (Miitopia Switch)
       * Or a mix of both with more features and customization overall like in the new Tomodachi Life game.
 
 ### Work in progress: Data
 
 * **All other Mii formats**: Wii, Switch, Studio... Shouldn't be hard to add.
-* **Data conversion**: Need to add CharInfo for Switch with conversions between previous formats. Implemented before, just needs to be done cleanly.
-* It would be good to read/write **local DB formats**, as well as the **Wii Remote DB**, **amiibo format**, and add “**Mii comparison**” for generating instructions.
+* **Data conversion**: Need to add CharInfo for Switch with conversions between previous formats. [Implemented before](https://github.com/ariankordi/nwf-mii-cemu-toy/blob/ffl-renderer-proto-integrate/assets/data-conversion.js), just needs to be done cleanly.
+* It would be good to read/write **local DB formats**, as well as the **Wii Remote DB**, **amiibo format**, and add "**Mii comparison**" for generating instructions.
 
 ### Work in progress: Rendering
 
 - **End-to-end rendering**: CharModelHelper.fu and Mask.fu work standalone for shapes and textures respectively, but need to be connected in some way for a full Mii head model.
-- **Resource textures**: All of them are swizzled, so Fusion code is needed per-platform for de-swizzling. (**link to something?**)
+- **Resource textures**: All of them are swizzled, so Fusion code is needed per-platform for de-swizzling.
 - **Expressions**: Tables have been extracted from FFL to make these work, but there is some other complex logic I haven't considered yet.
-  - The challenge is keeping FFL’s optimizations while also allowing customization here.
+  - The challenge is keeping FFL's optimizations while also allowing customization here.
 
 ### Still unknown
 
 * What level of abstraction makes sense for callers. In other words, we need maximum flexibility but without making it too complicated for whoever wants to use this.
-* There needs to be a way to read from any resource format through one interface, but all of them are so different that “one-size-fits-all” gets difficult fast.
+* There needs to be a way to read from any resource format through one interface, but all of them are so different that "one-size-fits-all" gets difficult fast.
 
-And of course, all code needs to be reviewed and polished before I’m done. I have some early work in the "mii-fusion-experiments" repo **add link**, but everything else is just on my machine for now.
+And of course, all code needs to be reviewed and polished before I'm done. I have some early work in the [mii-fusion-experiments repo](https://github.com/ariankordi/mii-fusion-experiments), but everything else is just on my machine for now.
 
 As a reminder, I'm the only one working on this. I don't have any deadlines, pull requests, bug reports, anything. Just me to decide when it's ready.
 
-My plan has been to finish my rewrite of the renderer server **add link**, then use it as a testbed to fully replace FFL. That way, I can get a nice side-by-side with tests going. Once that project gets off the ground, this one will as well.
+My plan has been to finish my [rewrite of the renderer server]({{< relref "posts/2026-mii-status-backend" >}}#mii-renderer-rewrite-in-raylib), then use it as a testbed to fully replace FFL. That way, I can get a nice side-by-side with tests going. Once that project gets off the ground, this one will as well.
 
 ## Sigh.
 
@@ -366,9 +356,9 @@ For how long I've had this planned out, it's been going way slower than I'd like
   - Why haven't I released what's usable currently? I think developing data + rendering is important, but...
   - The real answer is that it's harder for me to go back and polish, than to keep experimenting. So I've just kept doing so.
 + **For it to just "work" is never good enough**. There was a point early on where I had a method for handling binary structs that worked fine. Instead of moving on, I spent months looking for a more principled solution.
-  - I knew about the Ghidra method all the way back in December 2024. I only went back to it because I knew I couldn't keep spending more time on this.
+  - I knew about the Ghidra method all the way back in August 2024. I only went back to it because I knew I couldn't keep spending more time on this.
 + **No external pressure.** Working alone means nothing forces a decision. I can decide something isn't ready indefinitely, which is something I do a lot.
-  - There also isn't a project I have that actively "needs" it. Sure, I have many ideas here and there. The only "product" I've released with FFL is the renderer server **add link**, which I have deemed dead until it's rewritten.
+  - There also isn't a project I have that actively "needs" it. Sure, I have many ideas here and there. The only "product" I've released with FFL is [the renderer server](https://github.com/ariankordi/FFL-Testing), which I have deemed dead until it's rewritten.
 
 None of this is going to stop the project, but it should explain the timeline.
 
@@ -378,16 +368,28 @@ Y'know, there's a version of this where I just use whatever is out there, finish
 
 For me, I am always seeing people trying to solve this, and usually badly.
 
-+ Copying old code that's many years old with known bugs **rust code with mii2studio bug**
-+ Wrapping my server in a Python library and calling it a "renderer" **shid named """""miipy"""""**
-+ Still guessing struct layouts in the year of our lord 2026 **many people do this.**
-+ Emulating Miitomo's code in QEMU, not realizing it is just FFL **pretendo**
-+ Pasting the rendering code of FFL into JavaScript, GDScript, Rust, C#
-  - **kat's thing, timmi (but he good), vee, WheelWizard**
+* Copying old code that's many years old with known bugs
+<!-- this has the mii2studio mouth color bug: https://github.com/skylarc2006/rkg-inspector/blob/1cc02e6bd847c5469779e47db4375f485102ef61/src/mii_rendering.rs -->
+* Wrapping my server in a Python library and calling it a "renderer"
+<!-- very cringe, disgraceful to call this "miipy" https://github.com/davitizhgenti/miipy -->
+* Still guessing struct layouts in the year of our lord 2026
+<!-- many people do this. trust me. -->
+* Emulating Miitomo's code in QEMU, not realizing it is just FFL
+<!-- pretendo: https://github.com/PretendoNetwork/org-issues/issues/2#issue-2762403314 -->
+* Pasting the rendering code of FFL into JavaScript, GDScript, Rust, C#
+<!--
+  * JS: kat's thing
+  * GD: timmi..? (but he good)
+  * RS: uhhh.. veee??? https://github.com/j0lol/vee/tree/main
+  * C#: this thing https://github.com/TeamWheelWizard/WheelWizard/blob/ad13b926f569265b1f5adc521d35b026d471dc59/WheelWizard/Features/MiiRendering/Services/ManagedFflResourceArchive.cs
+-->
 
 Barely anyone wants to help each other, but I do. The demand is there, but the quality isn't. Or whatever else Claude is telling me to write at this point. I've been working on this for five months straight please hel-
 
-**2018: https://github.com/jaames/mii-assets, 2020:** **https://github.com/HEYimHeroic/mii2studio**
+<!--
+* 2018: https://github.com/jaames/mii-assets
+* 2020: https://github.com/HEYimHeroic/mii2studio
+-->
 
 There are tools from 2018 and 2020 that are still relevant because nobody has yet made anything better. If I release my work openly, document it thoroughly, and it's actually correct, then it too can last 5 or 10 years.
 
@@ -397,7 +399,7 @@ On the other hand: tools that are closed-source, abandoned, or locked behind a D
 
 I've been working towards this for the better part of a year, and I'm more convinced than ever that Fusion is the right tool for this problem even in spite of its flaws.
 
-Fusion as a concept is very strong, and if this leads to it getting more popularity and support, that’s worth more than any of my ideas here.
+Fusion as a concept is very strong, and if this leads to it getting more popularity and support, that's worth more than any of my ideas here.
 
 Nobody has done the "Mii library" correctly before. I hope I can.
 

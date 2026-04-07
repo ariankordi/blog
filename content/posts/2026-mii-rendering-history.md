@@ -1,8 +1,8 @@
 ---
-title: How Mii rendering works (History of Mii Renderer REAL)
+title: (WIP) How Mii rendering works/History of Mii Renderer REAL
 date: 2026-02-22T04:00:00-04:00
 draft: true
-linkTitle: Mii rendering history (2024)
+linkTitle: (WIP) Mii rendering history
 ---
 
 **NOTE: THIS IS UNFINISHED!** I began writing this in February and just never finished. I may go back to it later, but if you're interested in this topic, here's what exists of this.
@@ -11,9 +11,9 @@ linkTitle: Mii rendering history (2024)
 
 ---
 
-## introduction
+There's this ["_Mii Renderer_" website](https://mii-unsecure.ariankordi.net/) I made a while back, and if you haven't already seen it, I recommend you do because it's kinda neat.
 
-there's this "mii renderer" website i made a while back and if you haven't already seen it, i recommend you do because it's pretty neat. this website can replicate the exact same styles of mii renders as the wii u does. how does this work? how did i create a renderer server around it, and what's next?
+This website can replicate the exact same styles of Mii renders as the Wii U, Miitomo, and Switch. How does this work? How did I create a renderer server around it?
 
 # Previous Attempts at Mii Rendering
 
@@ -21,23 +21,23 @@ Let's have a look at other attempts people have done over the years to render Mi
 
 ## [My Avatar Editor](https://myavatareditor.blogspot.com/2008/07/my-avatar-editor-transitional-beta.html) (2009)
 
-![myAvatarEditor_transitional.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-001.png)
+![myAvatarEditor_transitional.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-001.png "450px")
 
 It doesn't look horrible, but also doesn't look the same. It's not in 3D, it doesn't move, there are no expressions.
 
-![= File:Default Miis.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-002.jpeg)
+![= File:Default Miis.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-002.jpeg "400px")
 
 This is also the source of the image used on Wikipedia, which everyone who isn't too familiar with Mii characters seem to use. Why do the arms look like that...?
 
 ## Joey Carlino Mii Maker for Blender FREE (Feb 2024)
 
-- ![url.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-003.jpeg)
+- ![url.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-003.jpeg "450px")
 
 It's finally in 3D for a change, but, you can probably tell that it looks... wrong. The facial elements are all too close to each other, and the skin color doesn't look right either. In his video, he mentions eyeballing a lot of this. I guess that's admirable, but won't cut it for our purposes.
 
 ## iiMii Maker (Jun 2025)
 
-- ![Head Features.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-004.jpeg)
+- ![Head Features.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-004.jpeg "450px")
 
 LMAO, this may be the worst one yet.
 
@@ -49,13 +49,13 @@ Neither of the above two projects support importing your own Mii data. WHY?! Tha
 
 Not to mention that features have been removed, lol?
 
-![Blushes have been heavily.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-005.jpeg)
+![Blushes have been heavily.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-005.jpeg "300px")
 
 ## Chadsoft Mii Renderer (2017?)
 
 This is used on the leaderboards of that Mario Kart Wii mod, CTGP Revolution. And it's... interesting.
 
-![CTGP Revolution •.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-006.jpeg)
+![CTGP Revolution •.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-006.jpeg "450px")
 
 Like MAE, this isn't terrible but certainly doesn't look nearly as good as it does on the real console. Too dark, no reflections, that body model doesn't look right. This is also completely in 2D.
 
@@ -63,17 +63,17 @@ Like MAE, this isn't terrible but certainly doesn't look nearly as good as it do
 
 This is what the previous "Mii Renderer" tool from [pf2m.com/tools/mii](http://pf2m.com/tools/mii) uses, as well as Pretendo and some others.
 
-![Please select a Mii..jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-007.jpeg)
+![Please select a Mii..jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-007.jpeg "450px")
 
 This is a service run by Nintendo that you can use to render your own Mii data as well as edit it on the editor. Because of that, the face looks pretty accurate. But why is it so... flat? Looks like Miis on the Switch.
 
 It is, in fact, the style of rendering used in Miitomo.
 
-![Miitomo..jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-008.jpeg)
+![Miitomo..jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-008.jpeg "450px")
 
 Previously, Nintendo actually used the Wii U rendering style for Miiverse and Nintendo Accounts until 2017. You can actually see this in screenshots of Super Mario Run, which came out in 2016.
 
-![Toad Rally.avif](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-009.jpeg)
+![Toad Rally.avif](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-009.jpeg "300px")
 
 _Source: <https://www.polygon.com/super-mario-run/2016/12/18/13971718/toad-rally-get-tickets-tips-tricks/>_
 
@@ -81,7 +81,7 @@ _Source: <https://www.polygon.com/super-mario-run/2016/12/18/13971718/toad-rally
 
 Now, let's look at [mii-unsecure.ariankordi.net](http://mii-unsecure.ariankordi.net). I put three samples of the different styles I've reverse-engineered.
 
-![Pasted Graphic 83.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-010.jpeg)
+![Pasted Graphic 83.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-010.jpeg "600px")
 
 So that's Wii U, then Switch, then Miitomo. Nintendo's renders are on the right. As you can see, it's pretty much 100% exact.
 
@@ -189,11 +189,11 @@ _I briefly asked him about shaders [in April](https://discord.com/channels/33911
 
 Interestingly, he let me hop on a screen share call to watch him reverse this with Ghidra and RenderDoc for a WHILE - at least 5 hours straight. I didn't catch everything he was trying to do of course, but I was always intrigued. I ended up learning a lot about both tools from this session.
 
-![Cur Output 0 - Texture 32.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-019.jpeg)
+![Cur Output 0 - Texture 32.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-019.jpeg "450px")
 
-![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-020.jpeg)
+![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-020.jpeg "450px")
 
-![image.png.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-021.jpeg)
+![image.png.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-021.jpeg "450px")
 
 _Some half-working attempts._
 
@@ -212,7 +212,7 @@ Now I had a basic understanding of all this. What did I learn?
 
 With that out of the way, in the end the shader code itself wasn't actually the most important part. As a matter of fact, FFL-Testing already had the Wii U shader: [aboood40091/FFL-Testing@6daad53](https://github.com/aboood40091/FFL-Testing/commit/6daad53408d7b6a8e93b64bd0027cd7d2cf7d52b#diff-42a7d4aaf29c2c59bfa6978f5bd5682317e09800d4c8878e9c9a9946501eea11)
 
-![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-022.jpeg)
+![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-022.jpeg "450px")
 
 The first version he uploaded used "FFLShader.gsh", which looked like... that. It got changed to a ["much more simplified shader"](https://github.com/aboood40091/FFL-Testing/commit/0219f6fc86b4a5486fa869dda3a592fee9857fe2#diff-2171bccc197ef6f3cb8e8b57814c9d27d062648bcc873f1a5793909a8f3548fe) that was completely flat. But if this older one really is the Wii U shader, then why does it look like that?
 
@@ -220,7 +220,7 @@ The first version he uploaded used "FFLShader.gsh", which looked like... that. I
 
 These variables/"uniforms" are key to making the parts NOT all look flat/same-y. Abood extracted this table full of "material" parameters for each shape to use - face, beard, nose, hair, etc.
 
-![Pasted Graphic.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-023.jpeg)
+![Pasted Graphic.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-023.jpeg "400px")
 
 _Screenshot of [the material tables](https://github.com/aboood40091/FFL-Testing/commit/9cb248741e2c80159d0ce18afcb4f786a88df6f7#diff-b4230b81837a284e1f44bc4baa92853a7df306218f3375b9599110220c308412R138-R213) - pretty much just numbers and colors for each shape type._
 
@@ -299,7 +299,7 @@ After this and more banging my head against the wall trying to [make a server ou
 
 Later on I revisited that "FFLBodyRes.dat" file, and saw that it's literally the same FFL resource format but with 2 shapes instead of 857. I could view the male/female body models in Blender.
 
-![Modeling Sculpting UV Editing.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-033.jpeg)
+![Modeling Sculpting UV Editing.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-033.jpeg "450px")
 
 After a little bit of porting, I was able to render this model instead of using static images which helped when I added more shaders later on.
 
@@ -313,7 +313,7 @@ I was at a point where my site is functional, runs locally, could use more work 
 
 Since one of my goals was to replace [studio.mii.nintendo.com](http://studio.mii.nintendo.com)'s renderer, it sounded like a good idea to replicate its shader in case anyone was attached to it. Until May, I thought this was the "Switch Shader", until realizing that it wasn't:
 
-![24, 6:33 PM.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-035.jpeg)
+![24, 6:33 PM.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-035.jpeg "450px")
 
 _"Switch" and "Mii Studio" shaders are definitely [not the same](https://discord.com/channels/360173962862395392/378688267802902528/1241881565097754624)!_
 
@@ -339,7 +339,7 @@ First one is annoying but workable, and so is the second one but the transparent
 
 If you don't apply it, it's too dark. If you apply it to the other shaders, then... the face will simply be transparent, as you requested.
 
-![image-CE749.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-039.png)
+![image-CE749.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-039.png "450px")
 
 But the third problem with the material tables is the real kicker. Remember that short table of uniforms for each shape, which basically changed their reflectivity, that the Wii U shader needed?
 
@@ -385,7 +385,7 @@ If you remember "FFLIconWithBody" from earlier, this is the next version of it. 
 
 You can see that while on the Wii U amiibo Settings uses the exact same body size for all Miis, on the Switch it actually has the same body! And the icon is still slightly different, proving that amiibo Settings is in fact doing its own icon rendering for this screen.
 
-![Pasted Graphic 33.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-044.jpeg)
+![Pasted Graphic 33.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-044.jpeg "350px")
 
 When I first found these strings, I was of course intrigued but also a little intimidated when I saw language around "skeletons" and "skinning".
 
@@ -395,19 +395,19 @@ Moving along, I threw the "VariableIconBodyImpl" into Ghidra and saw that the pr
 
 ## gag reel of bad body scaling attempts
 
-## ![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-045.jpeg)
+## ![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-045.jpeg "400px")
 
 ## [Thanksgiving Turkey](https://discord.com/channels/360173962862395392/378688267802902528/1290327929607163914)
 
-![Ozz-animation sample: Skinning.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-046.jpeg)
+![Ozz-animation sample: Skinning.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-046.jpeg "400px")
 
 [Stick bug headass?](https://discord.com/channels/@me/814599982841724938/1323293386148675655)
 
-![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-047.jpeg)
+![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-047.jpeg "400px")
 
 [Pinnochio lookin ahh?](https://discord.com/channels/@me/814599982841724938/1321290154354278481)
 
-![0. 0. 8..jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-048.jpeg)
+![0. 0. 8..jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-048.jpeg "400px")
 
 <https://discord.com/channels/@me/814599982841724938/1321288640135037001>
 
@@ -435,7 +435,7 @@ Even before it went back up, there's a lot I tried because Miitomo has some… i
 
 To start with, the game is using a library called "AFL" for Mii rendering, as well as an "AFLResHigh.dat" resource file that has the same header as FFLResHigh.dat. I even had a look at the names of AFL functions that were exposed.
 
-![here's the symbols if you want to drool at them for yourself.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-049.jpeg)
+![here's the symbols if you want to drool at them for yourself.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-049.jpeg "400px")
 
 _AFL function names I [stumbled upon](https://discord.com/channels/@me/375040634785890304/520018154395795457) a long while back._
 
@@ -465,13 +465,13 @@ For a while here I was actually dumbfounded as to why this shader wasn't looking
 
 Guess what, that's exactly what it is.
 
-![Pasted Graphic 15.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-054.jpeg)
+![Pasted Graphic 15.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-054.jpeg "450px")
 
 The clues should've been obvious - there are definitions at the top mentioning "FFL", the uniform names are identical, and it's called "MiiDefaultShader" versus "FFLDefaultShader".
 
 I even went through decompiling an "AFLiDefaultShader" class and its structures/tables to find that they were the same as what Abood extracted from Mii Maker. I actually had to do a double take and redo everything to confirm this.
 
-![Pasted Graphic 16.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-055.jpeg)
+![Pasted Graphic 16.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-055.jpeg "450px")
 
 _I uh... forgot I tried to reverse this before Abood did._
 
@@ -575,7 +575,7 @@ So it's completely incompatible in a way that will be annoying to work around, w
 
 Surprisingly enough, if I simply adjust the array to account for the amount of AFL parts, it… actually WORKS?!
 
-![image.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-058.png)
+![image.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-058.png "550px")
 
 _Me trying this [on Aug. 22](https://discord.com/channels/360173962862395392/378688267802902528/1276173400032677919)._
 
@@ -597,13 +597,13 @@ Mystery solved, right? But, uh… if the code is incorrectly deswizzling all tex
 
 You see, in AFL they unswizzled the textures but kept the MIPMAPS still swizzled. Mipmaps are tinier versions of the image embedded in the texture data, so that the GPU doesn't have to do hard work shrinking them manually.
 
-![Pasted Graphic 21.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-061.jpeg)
+![Pasted Graphic 21.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-061.jpeg "500px")
 
 _[Argh](https://discord.com/channels/360173962862395392/378688267802902528/1276173530844893244)._
 
 Notice how the last screenshot had blurry eyes, because I specifically made it low quality which in turn forces mipmaps. But here, I'm doing the opposite:
 
-![24, 9:51 AM.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-062.jpeg)
+![24, 9:51 AM.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-062.jpeg "500px")
 
 By the way, I found out that AFL doesn't use these mipmaps at all. Fantastic. So it doesn't tell me the layout is different, AND that the textures say they have mipmaps when they are unusable.
 
