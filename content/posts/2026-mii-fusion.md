@@ -2,7 +2,7 @@
 title: The Ultimate Library for All Mii Operations in Any Language
 date: 2026-03-31T00:17:00-04:00
 draft: false
-linkTitle: Mii Fusion Manifesto
+linkTitle: Ultimate Mii Library?
 ---
 
 This is continued from [my other post on where my Mii projects stand]({{< relref "posts/2026-mii-status-frontend" >}}#a-universal-library). That's when I first introduced Fusion, and this post goes into more depth on my plans.

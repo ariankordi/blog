@@ -25,5 +25,5 @@ I spend most of my time coding or gaming, but I really enjoy reverse engineering
 
 ### You may also be looking for
 * [Mii Renderer (REAL)](https://mii-unsecure.ariankordi.net/) - Reverse engineered service for rendering accurate Mii icons.
-* Some Mii related tools on [my JSFiddle](https://jsfiddle.net/u/arian_/fiddles/).
+* Some Mii related tools on [my JSFiddle](https://jsfiddle.net/u/arian_/fiddles/) (now archived [on GitHub](https://github.com/ariankordi/my-jsfiddles)).
 * Miiverse hacking/clones?: If we're not close, don't ask. Thanks.

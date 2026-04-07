@@ -113,7 +113,7 @@ To have all of these tools available under one roof and "do it right" this time 
 
 This would separate a one-off toy from something that'll help with many tools I and others make from now on. Accuracy and correctness would also be a priority, because I've seen issues with previous Kaitai-based solutions.
 
-![](/uploads/20260319-005254.jpg "550px")
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-005.jpeg "550px")
 
 _Issues with "mii2studio" code and Kaitai Structs. Other code shares the same bugs as a result of careless copying. [My fix for glassY](https://github.com/HEYimHeroic/mii2studio/pull/7) and other PRs never got merged._
 

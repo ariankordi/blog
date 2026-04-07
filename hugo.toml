@@ -117,7 +117,7 @@ enableRobotsTXT = true
     repo_id = "R_kgDORLDSKw"
     category = "Announcements"
     category_id = "DIC_kwDORLDSK84C2BtF"
-    mapping = "og:title"
+    mapping = "pathname"
     theme = "preferred_color_scheme"
 
 
