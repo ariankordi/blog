@@ -198,11 +198,11 @@ Didn't start on this part yet, but I guess I will also take a moment to mention 
     - I may even consider a lower-level "RPC" to talk to it from another process, useful for the thumbnailer.
 * Renders and glTF exports are emitted, requiring different options.
     - Perhaps there will be a "head" subset of data that the "full body" request inherits from?
-* I'll have to consider if it should be a binary format, or Protobufs!11111!!!!11!!!!!, or simply use JSON over the wire, or some hybrid of accepting JSON/URL params with a binary format, and then the binary format should have backwards compatibility and room to grow as well... eugh.
+* I'll have to consider if it should be a binary format, or Protobufs!11111!!!!11!!!!!, or simply use JSON over the wire, or... something. Many ways to go here.
 
 Oh, another thing worth mentioning is that my image.png endpoint has the ability to fetch NNID/PNIDs directly. That will have to go, since it shouldn't be the renderer's responsibility to fetch that. Will I make a workaround so it'll still work, or break all 3 people using it? Who knows!
 
-## **Update on this Update!**
+## **This Update...**
 
 Believe it or not, this is at least the fifth attempt from me to write an update blog post. I've been beating myself up to just get this out.
 

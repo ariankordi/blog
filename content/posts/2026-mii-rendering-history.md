@@ -395,9 +395,9 @@ Moving along, I threw the "VariableIconBodyImpl" into Ghidra and saw that the pr
 
 ## gag reel of bad body scaling attempts
 
-## ![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-045.jpeg "400px")
+![image.jpeg.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-045.jpeg "400px")
 
-## [Thanksgiving Turkey](https://discord.com/channels/360173962862395392/378688267802902528/1290327929607163914)
+_[Thanksgiving Turkey](https://discord.com/channels/360173962862395392/378688267802902528/1290327929607163914)_
 
 ![Ozz-animation sample: Skinning.jpeg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-046.jpeg "400px")
 

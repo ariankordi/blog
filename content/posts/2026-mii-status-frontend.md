@@ -161,7 +161,7 @@ So far, here is a quick overview of some of the functions I have implemented _co
 
 I have also made accuracy/correctness a big priority. Almost everything I mentioned above is either using decompiled code from scratch by me, or has actual tests against the real thing. It's all "provable".
 
-The most important examples are in my [mii-fusion-experiments](https://github.com/ariankordi/mii-fusion-experiments) repo, though unfortunately at this point most of my WIP code isn't public thanks to certain individuals who pushed me in that direction. You know who you are.
+The most important examples are in my [mii-fusion-experiments](https://github.com/ariankordi/mii-fusion-experiments) repo, though at this point I've kept most of my WIP code private for now. For now.
 
 Recently I used my [MiiToStudio.fu](https://github.com/ariankordi/mii-fusion-experiments/blob/main/MiiToStudio/MiiToStudio.fu) class to [remake pf2m.com/tools/mii](https://pf2m.com/tools/mii/) with a modular-ish "Mii importer" component, where all parsing (including QR decryption) is done client-side in pure Fusion. Check the sourcemaps to see.
 
