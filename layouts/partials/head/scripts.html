@@ -1,4 +1,7 @@
-{{ $jsBuildOpts := dict "minify" false "sourceMap" "linked" }}
+{{$jsBuildOpts := dict
+    "minify" (cond hugo.IsDevelopment false true)
+    "sourceMap" "linked"
+}}
 {{ $js_bundle := resources.Get "js/main.js" | js.Build $jsBuildOpts | fingerprint }}
 
 <script defer language="javascript" type="text/javascript" src="{{ $js_bundle.RelPermalink }}"></script>
