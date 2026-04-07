@@ -1,7 +1,7 @@
 ---
 title: 'Thoughts on Mii Renderer (REAL) in 2026 - Part 2: Backend'
 date: 2026-03-09T00:00:00-05:00
-draft: true
+draft: false
 linkTitle: 2026 Mii Status (Backend)
 ---
 

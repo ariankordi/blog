@@ -174,7 +174,7 @@ That's a cleaner split than most existing libraries, which tend to mix file read
 
 ### The language's actual limits
 
-It never claimed to be the best language, but jeez..
+It never claimed to be the best language, but there are serious flaws.
 
 - **No imports**: All Fusion code gets built to a single output file. You can bundle multiple .fu files into one output, but for the most part the modules have to be self-contained.
     - This keeps dependencies minimal, which I like, but…
@@ -192,52 +192,6 @@ It never claimed to be the best language, but jeez..
 *The user's code is the only one calling "new" here. When you use "new", that allocates memory.*
 
 None of these are dealbreakers, but they shape how you write code. It's a different mindset than usual.
-
-## How do I know it's correct?
-
-This is something I’ve been obsessed with since the beginning. I didn't want to make another "I guessed at the field layout and it probably works" implementation. I wanted to definitively say: this is right, and this is exactly why.
-
-- **Decompiled source**: Where possible, I reverse directly from the original binary. Algorithms (random Miis), lookup tables, and struct fields are all exact.
-    - I'm not even trusting the existing FFL decomp for this (sorry Abood) for a few reasons, and besides, I've gathered more of this:
-    - **Debug info** is a treasure trove when available, and for most Face Library versions it is. This gives us the exact function names, and sometimes field/variable names.
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-011.jpeg "550px")
-
-*dwarfdump + generated header from a debug version of CFL. This is the most thorough kind of debug info.*
-
-- **Table extraction**: Occasionally there are lookup tables needed for things like colors, conversion, or the random Mii (“look-alike”) feature.
-- **Extraction scripts**: These usually get extracted either manually or in Ghidra, but I wrote scripts that extract these byte-for-byte directly from binaries.
-    - The scripts also make it easier to do further conversion, e.g. converting colors from floats (decimal-point) to plain numbers (0xRRGGBB).
-    - Given that these tables take up room, there’s potential to shrink them by using RGB565 (16-bit).
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-012.jpeg "500px")
-
-_Extraction scripts doing their thing. Colors are converted from float to 0xRRGGBB (no precision loss), the random parts arrays are reordered and that's what was actually used in my Fusion code._
-
-- **Testing against real code**
-  - I validated my random Mii implementation by running the same seed through my Fusion code versus an emulator that executed the function in FFL directly.
-  - My random Mii code matches across thousands of rounds. That’s the standard I want for everything.
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-013.jpeg "550px")
-
-_Left side: Python script using unicorn to emulate the random Mii function._
-
-_Right: Fusion code producing the same result. Notice "1df4" in the third result._
-
-_This FFLiDatabaseRandom decompilation is from scratch by me, since I noticed a mistake in Abood's version._
-
-- **Unit tests**: If this sounds lame, you’re right. This is mostly the kind of thing huge companies do.
-  - In fact, the Switch Face Library has unit tests.
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-014.jpeg "300px")
-  - For my renderer server, I remember features constantly breaking whenever I made changes. This would prevent that.
-  - Fusion doesn’t have its own test framework, but to run the test in all languages we can make a simple program for each test case and run in every language.
-      * Coverage can be measured in an individual language like JS, C#, C++. I would love to eventually have high coverage.
-  - Example: There is a test for facial feature positioning (mask) where the exact coordinates were captured from a Wii U game in RenderDoc, and it matches exactly.
-
-![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-015.jpeg "500px")
-
-*The C++ GoogleTest here will be ported to Fusion eventually.*
 
 ## Fusion for Mii rendering?
 
@@ -294,6 +248,61 @@ At the moment this is only exports a single mesh, but I am planning to change th
 * Load the model data from memory, and it'll just work™
 
 If I am able to finish this, it would be the ultimate universal Mii rendering solution. But, let's give it some time and see if I actually get to this point.
+
+
+## How do I know the code works?
+
+<details>
+
+<summary>
+    This section is a bit boring, so click here to reveal it.
+</summary>
+
+Accuracy is something I’ve been obsessed with since the beginning. I didn't want to make another "I guessed at the field layout and it probably works" implementation. I wanted to definitively say: this is right, and this is exactly why.
+
+- **Decompiled source**: Where possible, I reverse directly from the original binary. Algorithms (random Miis), lookup tables, and struct fields are all exact.
+    - I'm not even trusting the existing FFL decomp for this (sorry Abood) for a few reasons, and besides, I've gathered more of this:
+    - **Debug info** is a treasure trove when available, and for most Face Library versions it is. This gives us the exact function names, and sometimes field/variable names.
+
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-011.jpeg "550px")
+
+*dwarfdump + generated header from a debug version of CFL. This is the most thorough kind of debug info.*
+
+- **Table extraction**: Occasionally there are lookup tables needed for things like colors, conversion, or the random Mii (“look-alike”) feature.
+- **Extraction scripts**: These usually get extracted either manually or in Ghidra, but I wrote scripts that extract these byte-for-byte directly from binaries.
+    - The scripts also make it easier to do further conversion, e.g. converting colors from floats (decimal-point) to plain numbers (0xRRGGBB).
+    - Given that these tables take up room, there’s potential to shrink them by using RGB565 (16-bit).
+
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-012.jpeg "500px")
+
+_Extraction scripts doing their thing. Colors are converted from float to 0xRRGGBB (no precision loss), the random parts arrays are reordered and that's what was actually used in my Fusion code._
+
+- **Testing against real code**
+  - I validated my random Mii implementation by running the same seed through my Fusion code versus an emulator that executed the function in FFL directly.
+  - My random Mii code matches across thousands of rounds. That’s the standard I want for everything.
+
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-013.jpeg "550px")
+
+_Left side: Python script using unicorn to emulate the random Mii function._
+
+_Right: Fusion code producing the same result. Notice "1df4" in the third result._
+
+_This FFLiDatabaseRandom decompilation is from scratch by me, since I noticed a mistake in Abood's version._
+
+- **Unit tests**: If this sounds lame, you’re right. This is mostly the kind of thing huge companies do.
+  - In fact, the Switch Face Library has unit tests.
+
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-014.jpeg "300px")
+  - For my renderer server, I remember features constantly breaking whenever I made changes. This would prevent that.
+  - Fusion doesn’t have its own test framework, but to run the test in all languages we can make a simple program for each test case and run in every language.
+      * Coverage can be measured in an individual language like JS, C#, C++. I would love to eventually have high coverage.
+  - Example: There is a test for facial feature positioning (mask) where the exact coordinates were captured from a Wii U game in RenderDoc, and it matches exactly.
+
+![](/uploads/The-Ultimate-Library-for-All-Mii-Operations-in-Any-Language-3122-attachment-015.jpeg "500px")
+
+*The C++ GoogleTest here will be ported to Fusion eventually.*
+
+</details>
 
 ## Progress: What exists right now
 
