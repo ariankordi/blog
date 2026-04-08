@@ -76,9 +76,9 @@ Do you remember how FFL-Testing opens a window that you can't fully get rid of? 
 
 3. The renderer will be reusable in other programs.
 
-- Basically the same code but in a .dll/.so that acts like the server, usable wherever you can call native code.
-- The interface would have Mii data/params in, icon/glTF model out. I'm planning a total of just a few functions.
-    - I've made a new glTF exporter used within the server but also usable separately and is meant to be fast and light for use in games.
+    - Basically the same code but in a .dll/.so that acts like the server, usable wherever you can call native code.
+    - The interface would have Mii data/params in, icon/glTF model out. I'm planning a total of just a few functions.
+        - I've made a new glTF exporter used within the server but also usable separately and is meant to be fast and light for use in games.
 
 Being able to get Mii icons completely locally without overcomplicating your server setup is nice enough as it is, but a library that takes Mii data in and a 3D model out could be the perfect solution for Mii rendering in any game engine. I don't think anyone has even realized the potential of that yet.
 

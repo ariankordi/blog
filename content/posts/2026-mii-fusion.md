@@ -5,9 +5,11 @@ draft: false
 linkTitle: Ultimate Mii Library?
 ---
 
-This is continued from [my other post on where my Mii projects stand]({{< relref "posts/2026-mii-status-frontend" >}}#a-universal-library). That's when I first introduced Fusion, and this post goes into more depth on my plans.
+_This is continued from [my other post on where my Mii projects stand]({{< relref "posts/2026-mii-status-frontend" >}}#a-universal-library). That's when I first introduced Fusion, and this post goes into more depth on my plans._
 
 ---
+
+It doesn't exist yet. Sorry if I clickbaited you. But it's not far off, either!
 
 ## Miis are deceptively complicated
 
