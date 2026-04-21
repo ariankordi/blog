@@ -18,14 +18,13 @@ If we go back to the original Direct, I think I can speak for many of us that we
 Was I fan of the art style, the new voices, or every single other decision made in this game? Nope. I didn’t even play that much of the original on 3DS (like many others), because for how cute it is, it gets very repetitive.
 
 With my opinions aside, something people definitely couldn't stop talking about since the first reveal were all of the new customization features. Oh, all of the new options.
-**image: discussion of this game**
-**you will probably want to look in jasmine discord and look for what people were saying around the reveal**
+![Braden @ ssa 1/20/25, 10:50AM](/uploads/2026-04-new-tomodachi-thoughts/2CF96F8D-0CFC-416A-956F-7361618D88EB.jpeg)
 I remember speculation going on for weeks about the new ears, all of the new hair styles, that little stupid sparkle in their eyes that I don't like...
 Yeah, I'm a bit of a *Mii Purist*, as I wasn't in love with Miitopia Switch's new features either. Oh well, they're here whether we want them or not.
 
 ## Getting Miis In/Out of the Game
 This is pretty much *the* first thing I started thinking about when it came to hacking/modding this game, because in January 2026, the inevitable was confirmed. Nintendo didn't want any online sharing going on in this game.
-![in addition to those screenshot imits, the Japanese website confirms that the game does not have any online](Attachments/960BE158-DDFF-4FC2-8DE8-7CB329C6EA17.jpg)
+![in addition to those screenshot imits, the Japanese website confirms that the game does not have any online](/uploads/2026-04-new-tomodachi-thoughts/960BE158-DDFF-4FC2-8DE8-7CB329C6EA17.jpg)
 *Source: [Animal Crossing World](https://animalcrossingworld.com/2026/01/tomodachi-life-has-harsh-restrictions-on-sharing-screenshots-mii-designs-online/)*
 
 Despite the initial shock, as well as the unsurprised "Oh Nintendo!" reactions, what wasn't obvious is that this was actually a first for Miis. Since the very beginning, they've had many ways to spread.
@@ -38,19 +37,19 @@ As you can see, every console above had a way to exchange Miis with people, incl
 
 Meanwhile, when the demo came out people began reversing the save file ASAP to make a decently functional decent save editor: [https://github.com/tlmodding/living-the-dream-save-editor](https://github.com/tlmodding/living-the-dream-save-editor)
 Within about two weeks, we began seeing the first Mii sharing tools using the save file. One is called [ShareMii](https://github.com/Star-F0rce/ShareMii), and the other is called... [ShareMii](https://github.com/Azkun/ShareMii). Very original, guys.
-![s GPL-3.0 license](Attachments/70D83EB5-B632-4FC6-B4A1-2A2299E8B4DD.jpg)
-![ShareMit](Attachments/6C6BF00F-C1C7-45CF-9AB9-1FFFDC0987D3.jpg)
+![s GPL-3.0 license](/uploads/2026-04-new-tomodachi-thoughts/70D83EB5-B632-4FC6-B4A1-2A2299E8B4DD.jpg)
+![ShareMit](/uploads/2026-04-new-tomodachi-thoughts/6C6BF00F-C1C7-45CF-9AB9-1FFFDC0987D3.jpg)
 The difference is that one is a web app, while the other is a Python GUI/CLI tool. Pick your poison, I guess.
 
 It's definitely nice that these exist as *some* way for some users to share their Mii data, but this never got me as excited as reversing the only legitimate method for sharing Miis across devices.
 
 That's right, I'm talking about the local Wi-Fi transfer feature. The bare minimum that Nintendo Co., Ltd. graced us with. I'm surprised they even added this.
-![Share the Mii and items you](Attachments/7418ECB4-F524-4D01-990D-98DF4534FA0F.jpg)
+![Share the Mii and items you](/uploads/2026-04-new-tomodachi-thoughts/7418ECB4-F524-4D01-990D-98DF4534FA0F.jpg)
 *Source: Nintendo's [Japanese site](https://www.nintendo.com/jp/switch/blfga/index.html?modal=1)*
 
 ## Fighting with Local Wi-Fi Transfer
 Many people brought up the idea that we'd spoof the other console using a PC, and that would allow us to transfer Miis between any unmodded console over the internet, the way we should've been able to do to begin with.
-**image: find that one tweet that got popular**
+![Simon @realsast • Mar 30](/uploads/2026-04-new-tomodachi-thoughts/29E8100F-4E23-4681-BF8E-0A7E87DB6C5E.jpg)
 
 The groundwork for reversing this has been here for a while, as there's good interest in reversing the local Wi-Fi features of the Switch:
 * [ldn_mitm](https://github.com/spacemeowx2/ldn_mitm/tree/master) - Allows replacing Wi-Fi with local LAN, and playing with others from across the world or between emulators.
@@ -69,18 +68,18 @@ There are some big questions there, but the most relevant one is about the proto
 
 ### Attempting to Reverse the Protocol (MiiEdit Applet)
 I first looked into this in about February before the demo was available. However, even after the demo shadow-dropped in March, it didn't include any code for actually performing the local Wi-Fi transfers (just the UI and translated strings).
-![March 30, 2026](Attachments/F06807D6-2CBF-4539-A7EA-3F01BC1BD7CD.jpg)
+![March 30, 2026](/uploads/2026-04-new-tomodachi-thoughts/F06807D6-2CBF-4539-A7EA-3F01BC1BD7CD.jpg)
 What could we do instead? I actually wanted to take this opportunity to try reverse-engineering the other Mii Wi-Fi transfer feature instead, to be better prepared.
 
 This feature often gets glossed upon, but the Wii/DS, 3DS/Wii U, and Switch all have a feature to transfer Miis over local Wi-Fi.
 
 **todo: put these in a collage?????**
 
-![Received](Attachments/62AD8F6B-3CF0-4330-97AB-7978E1276919.jpg)
+![Received](/uploads/2026-04-new-tomodachi-thoughts/62AD8F6B-3CF0-4330-97AB-7978E1276919.jpg)
 3DS -> Wii (Source: [Nintendo Life](https://www.nintendolife.com/news/2012/11/guide_transferring_your_mii_to_the_wii_u)).
-![3-ds-to-wii-u-1.large.jpg.webp](Attachments/656C6225-61F0-46AF-864E-F063D54B8F7C.webp)
+![3-ds-to-wii-u-1.large.jpg.jpeg](/uploads/2026-04-new-tomodachi-thoughts/656C6225-61F0-46AF-864E-F063D54B8F7C.jpeg)
 *3DS <-> Wii U (Source: [Nintendo Life](https://www.nintendolife.com/news/2012/11/guide_transferring_your_mii_to_the_wii_u)).*
-![Send/Receive](Attachments/B71E147E-4A6F-450A-9DBB-46546438A728.png)
+![Send/Receive](/uploads/2026-04-new-tomodachi-thoughts/B71E147E-4A6F-450A-9DBB-46546438A728.png)
 *Switch <-> Switch (Source: [Nintendo Wire](https://nintendowire.com/guides/switch/transfer-miis/)).*
 
 Since nobody ever looked into these features up to this point, I've always been curious about reverse-engineering them. Sometimes I've even pictured [including this in a set of "ultimate" Mii tools](https://ariankordi.net/posts/2026-mii-status-frontend/#new-website-mii-toolbox).
@@ -91,12 +90,12 @@ We already heard about ldn_mitm that directs this over LAN instead, but because 
 
 ### MiiEdit Fights Back
 The first time I tried the Switch Mii editor's local transfer feature in Ryujinx, I saw... this:
-![Create Newi](Attachments/B665301D-5C52-477E-A564-98568BD66F41.webp)
+![Create Newi](/uploads/2026-04-new-tomodachi-thoughts/B665301D-5C52-477E-A564-98568BD66F41.jpeg)
 It was very confusing, because I 100% definitely had Internet access enabled. It seemed that it "knew" that Wi-Fi was off before it even tried, like a hidden setting that applets can read out.
 
 I was stuck here for a while not knowing what to do about this, and gave up. But when I asked the ReSwitched Discord, instead of being ignored like I expected, a kind soul ACTUALLY helped me with this! It's like, wow, someone finally chose to help me the way I always try to help others.
 
-![not sure how you even got that far. This insales Dysteneral CemetenService inhead of I0verocal ComicationService](Attachments/3DDA5498-DCF6-419A-9D54-6C93ACD3D951.jpg)
+![not sure how you even got that far. This insales Dysteneral CemetenService inhead of I0verocal ComicationService](/uploads/2026-04-new-tomodachi-thoughts/3DDA5498-DCF6-419A-9D54-6C93ACD3D951.jpg)
 This "TSR Berry" guy has been doing some work around LDN in Ryujinx, and identified some problems that lead to this:
 * Yes, the MiiEdit applet is using two APIs Ryujinx didn't implement (IsWirelessCommunicationEnabled, IsAnyForegroundRequestAccepted)
 * But it is also using... a copy? of the LDN service.
@@ -108,17 +107,17 @@ So, not off to a good start already. It took me many weeks to come back to this,
 * I couldn't easily test with another console, because ldn_mitm itself would've had to be modified to MITM the "system" service alongside the user service. I didn't want to bother with this whatsoever.
 * Apparently there is a bug with LDN on Mac so I had to use my work laptop to test with two instances of Ryujinx.
 * At first it didn't show up, due to this weird "got empty Username" message.
-![Pasted Graphic 12.tiff](Attachments/15FDDEB9-B543-44FB-A99E-3D6A21EEA59F.tiff)
+![Pasted Graphic 12.jpeg](/uploads/2026-04-new-tomodachi-thoughts/15FDDEB9-B543-44FB-A99E-3D6A21EEA59F.jpeg)
 * After patching that out, it then showed up but didn't connect.
-![• • Cornectina with Rulink's Swach](Attachments/E40BB0A6-35DE-4C34-8047-0CB396E96C04.tiff)
+![• • Cornectina with Rulink's Swach](/uploads/2026-04-new-tomodachi-thoughts/E40BB0A6-35DE-4C34-8047-0CB396E96C04.jpeg)
 * I didn't see any obvious errors in the console, either. It tried to connect, then changed its mind.
 
 ### Why does MiiEdit Not Work
 I don't know, but on the same day I chose to mess around with Kinnay's LDN repo as well. There were a few interesting scripts I tried.
 I also decided to mess around with Kinnay's LDN repo that day. I actually got a bit farther by doing this, as it has a few scripts to play with.
-![<> Code](Attachments/38D38541-3A5F-4BC3-8B2F-A75CACCEBF9D.jpg)
+![<> Code](/uploads/2026-04-new-tomodachi-thoughts/38D38541-3A5F-4BC3-8B2F-A75CACCEBF9D.jpg)
 After finding a spare Wi-Fi dongle and firing up a Linux VM, I ran the "scan.py" script that didn't require the LDN password which I'd have to go through finding.
-![Leesd iomynicatien id: 020000001001092](Attachments/DA1F2616-C404-4EA1-BFC2-0454E7D31A4F.tiff)
+![Leesd iomynicatien id: 020000001001092](/uploads/2026-04-new-tomodachi-thoughts/DA1F2616-C404-4EA1-BFC2-0454E7D31A4F.jpeg)
 It showed up! That actually shouldn't be too surprising if you know how LDN works, but it was still really gratifying to see some semblance of progress.
 
 This script sees my Switch 2, and I can observe that... wait, what?
@@ -128,8 +127,8 @@ Station accept policy: NONE
 Usually, one console hosts and then another one joins. Pretty straightforward. But I could not join this hosted network, even if I had the right password.
 
 Well, now let's try running host.py. After finding the LDN password required for this, looky here! It actually shows up on the real console, as well as my Switch 2.
-![Search for Users to Connect With](Attachments/B19BBF45-8513-4AF1-BA64-31C59E4CD967.jpeg)
-![Search for Users to Connect With](Attachments/B1B1C8DA-3ECC-4ABB-A9FF-DC1388F0B9E9.jpeg)
+![Search for Users to Connect With](/uploads/2026-04-new-tomodachi-thoughts/B19BBF45-8513-4AF1-BA64-31C59E4CD967.jpeg)
+![Search for Users to Connect With](/uploads/2026-04-new-tomodachi-thoughts/B1B1C8DA-3ECC-4ABB-A9FF-DC1388F0B9E9.jpeg)
 *(I have censored some immature comments that I should not have put there whoops)*
 
 Now this begs the question, what happens if we connect? Do we see any- nope we just see nothing. Nothing happens. Nothing ever does.
@@ -145,7 +144,7 @@ Remember, BOTH networks were still set to "closed participation", and it wouldn'
 
 At this point I decided to look back at Ryujinx, since it should log all of the system calls the applet is trying to do.
 
-![50109122-286](Attachments/DE694432-23E0-40D2-878C-D745AC0ABE0C.jpg)
+![50109122-286](/uploads/2026-04-new-tomodachi-thoughts/DE694432-23E0-40D2-878C-D745AC0ABE0C.jpg)
 This is a little unusual. Each console hosts its own network, sees another console’s network, chooses to connect to it instead. But I don’t get how it does that when it’s always closed- wait a minute, what’s this?
 ```
 00:00:13.559 |T| HLE.OsThread.9 KernelIpc CallCmifMethod: ISystemLocalCommunicationService: ConnectPrivate
@@ -157,7 +156,7 @@ So what’s the difference between *Connect* and *ConnectPrivate*? ...I don’t 
 ### Current... "Progress" with the Actual Game
 As a reminder, everything I tried up until now has been with the MiiEdit system applet and not the real game.
 Now that we do have the retail game, research should be as easy as any other game that uses LDN, right? In theory yes, but in practice, I heard this from a friend.
-![# general le ok](Attachments/626BFEFA-37B2-4863-A4FF-5F3F4CFFEB3D.jpg)
+![# general le ok](/uploads/2026-04-new-tomodachi-thoughts/626BFEFA-37B2-4863-A4FF-5F3F4CFFEB3D.jpg)
 Already another bad sign that this doesn't "just work" the way it's supposed to. But I didn't probe too deep into this, because I dreaded having to copy the 6 GB ROM across to my work laptop and get that all set up.
 
 I will probably have another look at this eventually, but my interest sorta fell off.
@@ -185,52 +184,12 @@ Think about it for a sec. It'd be as simple as running a homebrew app - no extra
 
 Is there going to be some limitation of the 3DS’s Wi-Fi hardware preventing it from doing this? Well… I hope not!
 By default LDN uses 2.4Ghz *(unless they change it, please don’t Nintendo)* and the hosted network actually supports 802.11b/g, which the 3DS needs.
-![and = timing carticianies is ciened](Attachments/8F967C98-E3F8-4458-92C9-EC73B0EE7DA5.tiff)
+![and = timing carticianies is ciened](/uploads/2026-04-new-tomodachi-thoughts/8F967C98-E3F8-4458-92C9-EC73B0EE7DA5.jpeg)
 *Thanks for confirming, Chat CBT.*
 
 However, all of the above remains just concepts. Is there going to be some other stupid random thing preventing one or all of those options from not working? Absolutely. At the very least, Kinnay’s Python code has to be refactored to C++, and I’ve seen pet projects die over less.
 
 I'd still really love to see this working in one way or another. The fact that this feature has never been reversed for the Wii/3DS/Switch means that if I don't, then nobody else will. But I'd love to be wrong.
-
-## New Mii Features!!!!!
-I may as well go over the new facial features, as a preface to what I'm about to discuss next.
-
-You can skip this section if you don’t care about the details.
-
-It’s probably? worth saying that no game has had this many new additions for Miis. obviously. In order to keep consistency and compatibility, the head model itself and all of the shapes/textures used to compose it are pretty much set in stone.
-
-I’ll elaborate on that later, but my point is that every other Nintendo game with Mii customization has focused on clothing and headwear. Even Miitopia on Switch isn’t adding to the existing system, but rather overlaying its makeup over the face texture or replacing the hair model with a wig.
-
-**Shapes**
-* General
-    * They have tried to build multiple variants into the same bfres model, when needed.
-    * Some of these parts also have bones now, such as hair. I think this is for the physics? Regardless, Mii shapes NEVER had these prior.
-* Ears
-    * There are four of them. I think everybody stopped caring when we realized these are optional.
-* Hair: All, Front, Back, Parts
-    * Back hair can have many different positions: upper, middle / left, right, center
-    * The old hair types are categorized as “HairLegacy”.
-    * They put the variant for hats as a separate mesh in the same file.
-    * Interestingly, the “flipped” model is just a separate mesh entirely.
-        * Previously they just flipped X on the model.
-        * In some engines, this caused issues with triangle ordering.
-        * Did they just get sick of doing that, or was there another reason (bones)?
-* Glasses
-    * These are now properly modeled shapes instead of just a rectangle and texture, wow.
-
-**Textures**
-* Skin
-    * instead of makeup/wrinkles, there are two different layers to each:
-    * MakeUpper, MakeLower, WrinkleLower, WrinkleUpper
-* Mouth
-    * You can rotate it.
-* Eyes
-    * All eyes have this red channel to them, which I I’m assuming is so that all of them can have eye shadow.
-    * There is now: EyelidUpper, EyelidLower, EyelashLower, EyelashUpper
-* “Highlight”
-    * This is that little sparkle in the eyes.
-
-That may or may not be complete, but gives you an idea of what’s new here.
 
 ## Rendering the Dream?
 Y’know, custom Mii rendering has been a bit popular lately. I wonder who started that trend. **Is it possible to render all of the new features?** It absolutely is, especially with the Mii data format being reversed.
@@ -243,11 +202,11 @@ Let's dive into what this would involve. For now I'm just talking about shapes/t
 
 ### Ass Ets
 These Mii assets are ACTUALLY in formats Nintendo has used before, which is new for Miis.
-**image: overview of assets as files in switch toolbox, with one opened on the side**
+![Ggeinetel Wadoes Seting](/uploads/2026-04-new-tomodachi-thoughts/D14808BD-D633-4698-B98B-992AE01040F7.jpg)
 
 For those who are unfamiliar, every single first-party game that ever had Miis prior uses the Face Library and its assets (“resouce”) shared across the system. These resource archives are all in completely proprietary formats, in order for it to work standalone.
 
-![TEFLRosMiddle_ texturel](Attachments/2EF08135-9F2A-4414-AC14-9822755FABCC.tiff)
+![TEFLRosMiddle_ texturel](/uploads/2026-04-new-tomodachi-thoughts/2EF08135-9F2A-4414-AC14-9822755FABCC.jpeg)
 Once you get past the surface, they are just standard shapes and textures.
  
 But now, instead of dealing with proprietary garbage, we have... slightly less uncommon proprietary garbage! 😀
@@ -262,15 +221,15 @@ I'd also really want to not convert all of these by hand. That can be error-pron
 
 What are our existing options? Well... I've never been a fan of any of them.
 * Switch Toolbox -> FBX: This gave me an error when I tried it. Even if it did work, I... don't really care as FBX is not an open standard.
-![Microsoft.NET Framework](Attachments/5275564F-BBB2-4188-99FD-B1B366E50979.jpg)
+![Microsoft.NET Framework](/uploads/2026-04-new-tomodachi-thoughts/5275564F-BBB2-4188-99FD-B1B366E50979.jpg)
 * 3DS Max [BFRES Script](https://github.com/RandomTBush/RTB-3DSMax-Scripts/blob/main/Scripts/NintendoWiiU-Switch_BFRES.ms) (Random Talking Bush): It looks like a good option, but 3DS Max is not open-source and thus infinitely less flexible than I want it to be.
     * Also, there's only one "3DS".
 * Switch Toolbox/Track Studio -> DAE
     * First of all, DAE ("Collada") is an old format that many are trying to get rid of support for.
     * Most tools I see can't open DAE files from Toolbox/Studio.
-    * ![[arian@Arians-MacBook-Pro /V/shm> assimp export MiiHairAlll](Attachments/3A4534B8-D986-45A0-B83D-E803EA9F1DAE.jpg)
+    * ![[arian@Arians-MacBook-Pro /V/shm> assimp export MiiHairAlll](/uploads/2026-04-new-tomodachi-thoughts/3A4534B8-D986-45A0-B83D-E803EA9F1DAE.jpg)
     * If I use the "old exporter", it does open but... what?
-* ![gur viewer](Attachments/8AA23647-304D-4C3B-81F0-58CC4930ECFF.jpg)
+* ![gur viewer](/uploads/2026-04-new-tomodachi-thoughts/8AA23647-304D-4C3B-81F0-58CC4930ECFF.jpg)
     * The model actually does look correct in Blender, but again, we are trying to avoid that.
 * [Ywingpilot2/BfresToCast](https://github.com/Ywingpilot2/BfresToCast): Neat tool and the authors have their heart in the right place.
     * Unfortunately, this "Cast" format they use isn't supported well at all. There is no converter for [Assimp](https://github.com/assimp/assimp).
@@ -297,8 +256,8 @@ Since a majority of those tools also use WinForms, this creates the most restric
 At some point it may be worth looking into rewriting some of this code in [Fusion](https://github.com/fusionlanguage/fut) so that it's actually reusable by many people, but that isn't now. For the moment, I have to grit my teeth and use what exists now.
 
 So here I go, I went and tried vibe coding a tool that **imports BfresLibrary models and exports with Assimp**. Does it work? Ehhh... kinda.
-![alF Viewer](Attachments/63259598-375F-4586-90A6-957FC484322E.webp)
-![Pasted Graphic 7.jpg](Attachments/97C6F081-AFB0-447B-9E9E-C8077A6B32FD.jpg)
+![alF Viewer](/uploads/2026-04-new-tomodachi-thoughts/63259598-375F-4586-90A6-957FC484322E.jpeg)
+![Pasted Graphic 7.jpg](/uploads/2026-04-new-tomodachi-thoughts/97C6F081-AFB0-447B-9E9E-C8077A6B32FD.jpg)
 As of now, my tool has these problems:
 * Does not export to every format, some fail
 * Improper handling of normals
