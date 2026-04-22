@@ -7,15 +7,15 @@ linkTitle: New Tomodachi Thoughts
 
 Where were you when Nintendo announced their new Tomodachi Life game? I sure wasn’t expecting that announcement!
 
-So nice of _Nintendo Co Ltd._, oh, that sweet billion dollar company, for doing the bare minimum and listening to their fans! We truly are Living The Dream. ☺️
+So nice of _Nintendo Co Ltd._, oh, that sweet billion-dollar company, for doing the bare minimum and listening to their fans! We truly are Living The Dream. ☺️
 
 As someone who’s been going embarrassingly deep into reversing and analyzing the internals of Mii characters over the past two years, you would probably imagine that I’ve been in endless excitement over this game. Ehhhh…
 
 But regardless of what I think, the community has been moving fast in the past few weeks with this game.
-Thank Nintendo for randomly shadow-dropping the demo for this highly anticipated game on a random Wednesday, giving us a far earlier look than we otherwise would’ve had.
+Thank Nintendo for shadow-dropping the demo for this highly anticipated game on a random Wednesday, giving us a far earlier look than we otherwise would’ve had.
 
 ## Impressions?
-I think I can speak for many of us, that we were at the very least pleased that they were actually continuing this series. Nintendo didn't kill Miis in general, as some thought. That was a great thing!
+I think I can speak for many of us when I say that we were at the very least _pleased_ that they were actually continuing this series. Nintendo didn't kill Miis in general, as some thought. That was a great thing!
 
 Was I fan of the art style, the new voices, or every single other decision made in this game? Nope. I didn’t even play that much of the original on 3DS (like many others), because for how cute it is, the game gets very repetitive.
 

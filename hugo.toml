@@ -61,10 +61,7 @@ enableRobotsTXT = true
     ]
 
     github_url = "https://github.com/ariankordi"
-    linkedin_url = "https://www.linkedin.com/in/arian-kordi-940408233/"
-    #x_url = "https://x.com"
     discord_url = "https://discord.com/users/374374059695276039"
-    #youtube_url = "https://youtube.com"
     email_url = "mailto:ariankordi@ariankordi.net"
 
     # Plausible
