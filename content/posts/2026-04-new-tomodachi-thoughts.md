@@ -167,6 +167,12 @@ Already another bad sign that this doesn't "just work" the way it's supposed to.
 
 I will probably have another look at this eventually, but my interest sorta fell off.
 
+**Update if you are lurking and interested:** The LDN passphrase for this game is the following.
+
+```plain
+size=26 mode=Retail hex=4142434445464748494a4b4c4d4e4f505152535455565758595a0000000000000000000000000000000000000000000000000000000000000000000000000000
+```
+
 ### Umm... Using The 3DS?!?! 😹
 Let's address another one of our biggest problems with the idea of using a PC to spoof a real console: Doing this requires [low-level access to the hardware](https://github.com/kinnay/LDN/blob/8db2f1a357d6b4f6223f481f77d7b3384c485ca1/README.md#usage-instructions), meaning Linux, meaning headaches.
 
