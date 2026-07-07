@@ -43,7 +43,7 @@ My various Miiverse archives and HTTP dumps used to be hosted here, the **A**ria
 I should really write a post about my Miiverse """"hacking"""" saga, then properly organize and host all of the dumps I have released and ones that I haven't released before either (due to having credentials, etc. that should be removed). Until then, enjoy these.
 
 - [https://mii-unsecure.ariankordi.net/assets/2019-01-23-archive.ariankordi.net-just-aarch.7z](https://mii-unsecure.ariankordi.net/assets/2019-01-23-archive.ariankordi.net-just-aarch.7z "https://mii-unsecure.ariankordi.net/assets/2019-01-23-archive.ariankordi.net-just-aarch.7z")
-- [https://mii-unsecure.ariankordi.net/assets/2017-12-27-arian-fiddler-arc.zip](https://mii-unsecure.ariankordi.net/assets/2017-12-27-arian-fiddler-arc.zip "https://mii-unsecure.ariankordi.net/assets/2017-12-27-arian-fiddler-arc.zip")
+- [https://mii-unsecure.ariankordi.net/assets/2026-05-27-arian-fiddler-arc-decompress3.7z](https://mii-unsecure.ariankordi.net/assets/2026-05-27-arian-fiddler-arc-decompress3.7z "https://mii-unsecure.ariankordi.net/assets/2026-05-27-arian-fiddler-arc-decompress3.7z")
 
 _Also: [Project Rosé](https://www.bing.com/ck/a?!&&p=b0d33a267388b8d9d63dc744fecacef86d1a769755f8b521b9fc276cc1dd1739JmltdHM9MTc3MTAyNzIwMA&ptn=3&ver=2&hsh=4&fclid=3b4f54c6-d358-6b60-0cf8-40cad24a6adc&u=a1aHR0cHM6Ly9naXRodWIuY29tL1Byb2plY3QtUm9zZS8&ntb=1)'s Miiverse clone was entirely made with these, lol. Lol_
 
