@@ -1,7 +1,7 @@
 ---
 title: about mii-unsecure being mii-unreliable
 date: 2026-04-29T23:00:00-04:00
-draft: false
+draft: true
 linkTitle: mii-unreliable.ariankordi.net
 ---
 
