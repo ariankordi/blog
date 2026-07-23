@@ -4,6 +4,7 @@ date: 2026-07-19T15:25:00-04:00
 draft: true
 ---
 
+
 One of the reasons I started this blog was to actually give myself a direction for the many projects that I’m stuck working on.
 And you know what? I gotta say that I’ve been more productive in the past few months than the majority of last year, so today I have some nice updates to share with you.
 
@@ -82,20 +83,21 @@ We know that we can create icons, but what will the interface look like? How can
 
 bold = put links.
 * Serving Mii icons via an HTTP server
-    * Dozens of projects **use my server** already, and even MORE projects **use Nintendo's server.**
+    * Dozens of projects [use my server](https://github.com/search?q=ariankordi.net%2Fmiis%2Fimage.png&type=code) already, and even MORE projects [use Nintendo's server](https://github.com/search?q=nintendo.com%2Fmiis%2Fimage.png&type=code)**.**
 * Obtaining the *same* Mii icons internally via the library
-    * Ideally, you shouldn't have to rely on a server. (I'm also **struggling to maintain mine**)
-        * That benefits speed, **scalability (pretendo storage saving)**, and customization.
-        * Web browsers can do this too, **every visitor to your website has a GPU**.
-    * It's really important to me that there is feature parity.
-        * **Barely anyone has used FFL.js** for local Mii icons because it's missing features.
+    * Ideally, you shouldn't have to rely on a server. (I'm also [struggling to maintain mine](https://ariankordi.net/posts/2026-04-29-mii-unreliable/))
+        * That benefits speed, [scalability](https://github.com/PretendoNetwork/account/issues/144), and customization.
+        * Web browsers can do this too, [every visitor to your website has a GPU](https://caniuse.com/webgl2).
+    * It's really important to me that there is feature parity. It to be the *same* code, not [just a port](https://github.com/ariankordi/FFL.js).
 * Exporting 3D models of Mii heads and body models
-    * Used by a **handful of projects (that french one, maybe another)**, as well as **artists**.
+    * Used by a [handful of projects](https://github.com/search?q=%22%2Fmiis%2Fimage.glb%22&type=code), as well as [artists](https://www.youtube.com/shorts/JhiremZ-tPs).
     * If not tied down to a library, it has huge potential in games (engines can import directly).
-    * My new exporter is **very fast**, making it viable for many situations.
+    * My new exporter is [very fast](https://ariankordi.net/posts/2026-mii-status-backend/#new-gltf-exporter), making it viable for many situations.
 * Re-rendering the same model in succession
-* Rendering with any arbitrary camera angle, and customizing camera presets
+    * Multiple angles, multiple expressions, etc.
+* Rendering with any arbitrary camera position + presets
 * Potentially supporting animations
+    * Probably individual frames.
 * Accepting any Mii data format
 * Adapting to future changes
 
@@ -159,9 +161,9 @@ As a result, I began rewriting it all at the end of April. All formats now use a
 What you’re seeing here is my simple “shape viewer” in JavaScript.
 * In case you didn’t catch it, my library supports *every Mii resource format*.
     * Wii (RFL), DS (NFL), 3DS (CFL), Wii U (FFL), Miitomo (AFL), Switch/2 (ShapeMid/High.dat).
-        * According to **blah in the ReSwitched Discord** (link!!!), the Switch 2's Mii shapes are identical to the original.
+        * According to [hexkyz in the ReSwitched Discord](https://discord.com/channels/269333940928512010/1356976144418865384/1407446557934092499), the Switch 2's Mii shapes are identical to the original.
     * Most of these formats already had tools, but now they’re under one umbrella and work in many languages.
-        * For the record, we had tools for: Wii (**C# by Atlas**, closed source), Wii U/Miitomo (Python: **jaames**, **Abood**), 3DS (**Python by wyeyeywveye**).
+        * For the record, we had tools for: Wii ([C# by Atlas](https://mkwiiki.org/wiki/RFL_Res.dat_Editor), closed source), Wii U/Miitomo (Python: [jaames](https://github.com/jaames/mii-assets), [Abood](https://github.com/aboood40091/ffl/blob/master/tools/FFLResource.py)), 3DS ([Python by wwylele](https://github.com/B3n30/citra_system_archives/blob/master/mii/mii.py)).
     * This is actually the FIRST tool that parses DS shapes! It only took 18 years.
         * Do you want them? Here they are, enjoy! **NFL_Res-shapes-from-arian.zip**
         * There are some other problems with drawing DS Miis in a "universal" fashion that I may discuss later.
@@ -175,7 +177,7 @@ Now for textures, which I didn't have last time, I ran an example in C++ to deco
     * Texture deswizzlers are small and ported from existing code (w/credits, of course 😅).
     * ... In particular, the Wii U deswizzler was ported from 2200 lines of C++ to just 200 lines of 2x faster code:
 - [ ] ![Pasted Graphic.jpg](Attachments/8599BFB2-5347-4A32-87A7-1D5D4FF90AAB.jpg)
-        * If anybody "in the know" is reading, it will probably only work on FFL textures (R8/RG8/RGBA8) for now.
+        * If anybody "in the know" is reading, it only works on FFL textures (R8/RG8/RGBA8) for now.
 
 Finally, just for the heck of it, here's one simple example that decodes shape data running in many languages.
 **image**
@@ -192,10 +194,6 @@ Isn't that neat? Supporting *all* of these console generations means three major
 2. Homebrew that can render Miis on these consoles with the original assets.
 3. Potential to mod these files (if I implement re-packing).
 
-
-
-I really want this stuff to get to a state where I can release it,  blahblagbkag 
-
 Now that resources are out of the way, let's talk about actual rendering.
 
 ### Mii Faces and Expressions!
@@ -209,14 +207,14 @@ What’s so special about my mask implementation, you (m)ask?
 * It’s all pixel-per-pixel accurate and reversed independently, rather than copy pasting from the same FFL decomp.
 * Each part is drawn with 2D UV transforms instead of 3D transforms.
     * This is a tiny bit simpler, more efficient, and still fully accurate.
-    * It allows drawing each texture on the mask shape directly, which is **needed for GPU-less glTF export**s.
-        * Here is an example file for you that does exactly that: asfldasjklfhadjklhjsklf
-        * Another example that trims the area around each mask part: **dflskjhsdfhjkahsdjlasdfhjhjkl**
+    * It allows drawing each texture on the mask shape directly, which is [needed for GPU-less glTF exports](https://ariankordi.net/posts/2026-mii-status-backend/#aside-gltf-exporter-standalone-mode).
+        * Here is an example file for you that does exactly that: **bro-inline-mask1.glb**
+        * Another example that trims the area around each mask part: **bro-inline-mask2.glb**
         * The important thing to notice is that there's no intermediate texture in that model
 * All 19 expressions are implemented while maintaining the ability to load multiple at once.
 * This was one of the last features needed in my library to reach feature parity.
 
-While this probably doesn’t look impressive, especially since all of the expressions are just **stored in a table within FFL**, Nintendo implemented them in an interesting way.
+While this probably doesn’t look impressive, especially since all of the expressions are just [stored in a table within FFL](https://github.com/aboood40091/ffl/blob/73fe9fc70c0f96ebea373122e50f6d3acc443180/src/FFLiMaskTextures.cpp#L283-L333), Nintendo implemented them in an interesting way.
 Instead of just loading each new texture as you go, the Face Library has a fixed amount of slots for textures that vary by expression.
 
 For example: There’s a slot for “eye normal”, then one for “eye blink”, and “eye wink”. This ensures they don’t load the eye texture twice, but also allows expressions to share the same texture.
@@ -225,88 +223,104 @@ For example: There’s a slot for “eye normal”, then one for “eye blink”
 This approach is kinda annoying to implement, and I put it off for a long time because I wanted to be able to add new custom expressions easily without sacrificing this optimization. Until then, I simply implemented it as-is.
 
 Unfortunately I’m not quite off the hook with these yet, because of these bastards.
-**miitomo expressions**
-Somebody (me 😹) HAD to port all of the Miitomo expressions to the FFL decomp, but man, I’m regretting the way I did it. The 3DS/Wii U/Switch expressions should be built into the library, yes, but not these.
+![6:58 PM](Attachments/C0DA1EB3-88BC-4A3C-BA1A-D818224F637F.png)
+**miitomo expressions **[https://discord.com/channels/360173962862395392/378688267802902528/1276314818575470632](https://discord.com/channels/360173962862395392/378688267802902528/1276314818575470632)
+Somebody (me 😹) HAD to port all of the Miitomo expressions to the FFL decomp, but man, I’m regretting the way I did it. The 3DS/Wii U/Switch expressions should be built into the library, yes, but not *these*.
 
 What this means for me is that I can’t “officially” fully replace my FFL fork until I come up with custom expressions, and then use that mechanism for the Miitomo expressions. At that point they’ll be fully optional, and in fact, anyone can then add their own custom expressions without changing the library.
 
 Also, fun fact: the FFL decomp got the wink direction wrong.
 ![Name: Jasmine](Attachments/C0C41942-0B0F-4210-806F-0DF5F660270C.jpg)
-*"Wink Left" expression in the FFL decomp (via FFL.js / **demo-basic.html**)*
+*"Wink Left" expression in the FFL decomp (via FFL.js / [demo-basic.html](https://ariankordi.github.io/FFL.js/examples/demo-basic.html))*
 
 I always assumed "left" meant from the viewer's perspective, but the new code I implemented disagreed with the FFL decomp. I insisted this was a mistake, but sure enough, I tested an original Nintendo build of FFL and it agrees with what I just implemented. "left" is supposed to be from the Mii's perspective.
 ![nef.wtils.ing("setting canvas height'](Attachments/EF4654B0-73D6-4C0A-81DF-5A5CDA5D2EB5.tiff)
-*"Wink Left" created from Nintendo's code (via NWF / **nwf-mii-cemu-toy**).*
+*"Wink Left" created from Nintendo's code (via NWF / [nwf-mii-cemu-toy](https://github.com/ariankordi/nwf-mii-cemu-toy/tree/master)).*
 
 Gonna be real fun fixing every broken assumption I’ve made from that…
 
 ### When is it Coming Out
-The status quo on this actually hasn’t changed **since my last update**, which is that I want to put this into an existing application that already uses FFL. That way I can compare the two libraries side-by-side, and ensure all of the niche features are truly complete.
+The status quo on this actually hasn’t changed[ since my last update](https://ariankordi.net/posts/2026-mii-fusion/#still-unknown), which is that I want to put this into an existing application that already uses FFL. That way I can compare the two libraries side-by-side, and ensure all of the niche features are truly complete.
 
-Trust me, I want to make this thing work and release it just as much as anybody else reading this.
-But I don’t want to just, say, have all of the functions and class names and whatnot look the same as the old library. At that point, there’s barely any room for anything new.
+As much as I want to make this thing work and release it just as much as anybody else reading this, I don't want to make just a copy or "alternative".
+It would be so easy to have similar functions/classes/etc. as the old library, but then you paint yourself into a corner and leave little room for anything new.
 
 As of now, my focus is towards getting the renderer server to the point where I can replace the old one. Once I’m comfortable where I am there, I will immediately begin looking into replacing FFL with my own library.
 
+### Bonus for You :)
+I really want this stuff to get to a state where I can release it. Trust me, I hate it as much as (if not MORE than) anyone else when someone's working on a cool project that they just keep holding back.
+
+At the same time, I hope you can understand when I say that I've been burned by releasing too much in the past. Some people take without giving anything in return,
+and I definitely don't want to repeat my mistake of letting others "build the rest of the world" before I'm even finished with the foundation this time.
+Don't get me wrong, I am 100% planning on releasing everything I work on at some point, and DON'T think that it'll be like this forever - all of my projects are tracked under Git version control.
+
+Until then, I still thought I'd throw The Reader a bone here. This is the HTML for that shape viewer I showed off earlier: **fdljhkfljasdjlfs.html**
+This isn't meant for anything more than just playing around with, and you will notice that the JS is aggressively minified. I hate to be like that, but I still think this could be useful for at least somebody even in its current form. Also notice how it's just 19 KB isn't that INSANE!!!!!
+
+Enjoy, give credit if you do anything with this, and look forward to the full thing. 🫡
+## 
 ## Fusion Mii Data Library
 Writing my own “good” Mii data library is something I’ve been planning for a year and a half, and it’s the reason I even began looking at Fusion.
 Unfortunately. I always kept overthinking about all the ways to approach it in the most uncompromised way. This lead to no solution, which is the worst solution.
 
-But in May, I ACTUALLY began developing a full library and used the Ghidra method to achieve full decoding/encoding of all known formats, all in pure Fusion. Hooray.
-**code screenshot**
+But in May, I ACTUALLY began developing a full library and used the Ghidra method to achieve full decoding/encoding of all known formats, all in pure Fusion, working across many languages. Hooray. Here's some code.
+![Pasted Graphic 9.jpg](Attachments/8BE11DB3-EB84-49CF-B40F-38A087487035.jpg)
+*The test that ran in this screenshot decoded and encoded various Miis in Wii, 3DS/Wii U, Switch, and Studio formats to verify it can decode and re-encode to the same bytes.*
 
 ### But Does It Actually Work
+How do I prove to you that this is the real deal? Well, so far I was able to replace *two* existing libraries with the one I just created. Let me show you.
 
-How do I demonstrate that this is the real deal?
-Well, so far I was able to replace two existing libraries with the one I just created. Let me show you.
-
-**data-conversion.js tests**
-* These are dozens of unit tests including 68 Mii conversion cases.
+You won't recognize this one at first, but if you've used [mii-unsecure.ariankordi.net](http://mii-unsecure.ariankordi.net), you have run this code before:
+![Pasted Graphic.jpg](Attachments/4E1DC5D3-3B41-4B1E-8879-5563CA7C343B.jpg)
+* These are dozens of unit tests including **51** Mii conversion cases.
     * They cover decoding, conversion, and encoding with high branch coverage.
-    * All tests pass with flying colors.
-* I actually wrote these tests a year ago for an old **JavaScript Mii conversion library** that I use on my website.
+    * **All tests pass with flying colors.**
+* I actually wrote these tests a year ago for an old [JavaScript Mii conversion library](https://github.com/ariankordi/nwf-mii-cemu-toy/blob/02960692bd842e77b1bf15d825af3d2da1eec9b5/assets/js/data-conversion.js) made for my website.
     * I haven’t heard any issues with it in a year, and the tests have high branch coverage.
 
-My second example is **this browser extension**, which includes Mii conversion and QR code features.
-By replacing the “MiiJS” library with my own, I reduced its size from 500 KB to just 50 KB with all* features intact!
-\* All but Wii encoding. More on that later.
-**screenshot of size reduction**
+My second example is for [this browser extension](https://github.com/Kestron06/MiiStudioMiiLoader), which includes Mii conversion and QR code features.
+![Current Mii:](Attachments/57AA883F-DB7F-4BC8-A4BB-3996F79025A0.jpg)
+By replacing the [MiiJS library it uses](https://github.com/HEYimHeroic/MiiStudioMiiLoader/blob/b4aff8a4ec3e9c29723e517e1f5f675c79fe9d46/popup/popup.js#L87-L98) with my own code, I reduced its size from **450 KB to just 60 KB** with all* features intact!
+* All = read/write all official formats and QR codes, but no Wii conversion. More on that later.
+![Pasted Graphic 7.jpg](Attachments/54D6CD56-B888-4132-8779-1F17739C4E77.jpg)
+
+![MiJS. Full: 1900 KB](Attachments/DB0B61C0-F61E-41B9-8781-1507EEA4FCD0.jpg)
+If you're confused about why I am showing both *esbuild* and *google-closure-compiler* (which is smaller) for mine, but not for theirs, keep reading.
 
 ### Benefits of this new library
-
-I know what you’re saying - that can’t be right, can it? All decoding, QR reading/writing, and all but Wii encoding? All in just 60 KB?
+I know what you’re saying - that can’t be right, can it? All decoding, QR reading/writing, and all but Wii conversion? All in just 61 KB?
 
 There are two core reasons, and Fusion is responsible for them.
-1. Lack of bloat (aka libraries).
+1. Lack of bloated libraries.
     * QR codes and encryption libraries are intentionally left out of the main package.
         * You can use any library you want.
         * Your language may even have them built-in. Because Fusion works with them all, it’s not forcing you towards anything.
-    * for my JS code, I use much smaller libraries than MiiJS:
-        * **[qr.js](https://github.com/ariankordi/qr.js) (-4K), [qr-scanner](https://github.com/ariankordi/qr-scanner-binary) (~40K)**
-        * SubtleCrypto, a *built-in* encryption library. **link to the file using it**
+    * For my JS code, I use much smaller libraries:
+        * **[qr.js](https://github.com/ariankordi/qr.js) (10K), [qr-scanner](https://github.com/ariankordi/qr-scanner-binary) (40K)**
+        * [SubtleCrypto, a built-in encryption library](https://github.com/ariankordi/nwf-mii-cemu-toy/blob/02960692bd842e77b1bf15d825af3d2da1eec9b5/assets/js/WrappedMiiDataSubtle.js)**.**
     * These features ARE still supported, though it means you may have to write five lines of code instead of one.
 2. Minimal/simplistic design.
     * Each Mii format has their own encode/decode function.
         * If you don’t use a format, the unused functions can get stripped in the build process.
-        * But if you have a design like MiiJS where everything goes through function, you have to include MUCH more code.
-    * Structs are handled in a very simple way: raw byte/bit access. (link to ghidra method)
-        * No complex calculations with objects and arrays. It’s as minimal as you can get.
-        * this code is so simple and portable, there’s a chance you can copy-paste it into any random language. I did this with GDScript: **screenshot**
-        * 
-    * Because there is no reflection, Closure Compiler can be used.
-        * This is the most aggressive JavaScript optimizer.
-        * It does not work on ~70% of JS code (like MiiJS) if you use features like reflection*
-            * *Over-simplification **link to closure compiler restrictions**
+        * But if you have a design like MiiJS where everything goes through one function, you have to include MUCH more code.
+    * Structs are handled in a very simple way: [raw byte/bit access](https://ariankordi.net/posts/2026-mii-fusion/#binary-structures).
+        * No complex objects, no helper functions. It’s as minimal as you can get.
+        * This style of code is so simple and portable, chances are you can copy-paste it into any random language. I did this with GDScript:
+        * ![Pasted Graphic 4.jpg](Attachments/0292430D-2B76-468F-9557-7D2C5898743F.jpg)
+    * Because there is no reflection, **Closure Compiler can be used**.
+        * Its most effective optimizations do NOT work on ~70% of JS code (like MiiJS) unless they follow [its restrictions](https://developers.google.com/closure/compiler/docs/limitations).
+        * However, the way Fusion is transpiled makes its output always 100% compatible. So, you may consider this an "optimization".
 
-in summary:
-* Not only did I replace some guy’s library with my own in the same program and sacrificed (almost) no functionality…
-* The code is also smaller
-* It’s more reliable (type safety)
-* Is reusable in many languages
-* And is not based off of outdated guesswork.
+In summary:
+* Not only did I replace another library with my own in the same program, sacrificing (almost) no functionality…
+* The code is also *7x smaller*
+* It’s more reliable/type-safe, since Fusion supports TypeScript
+* Is reusable in many other languages
+* And is [not based off of outdated guesswork](https://ariankordi.net/posts/2026-mii-fusion/#how-do-i-know-the-code-works).
+
+If you want to call my bluff, check out my smaller version of MiiStudioMiiLoader **downloadable here**. It will only work in Chrome if you unzip then "load unpacked" with "developer mode" turned on.
 
 ### Remaining challenges
-
 You know when you start a project, complete 80% in a week, then suddenly like 3 months have passed and you still haven’t finished the last 20%? Yeah…
 
 * Data verification: Not implemented.
@@ -322,12 +336,12 @@ You know when you start a project, complete 80% in a week, then suddenly like 3 
         * so I actually haven’t spent as much cumulative time on this as it seems.
 
 * Wii conversion…
-    * I actually do support decoding and encoding Wii data, but NOT downgrading 3DS/Wii U/Switch formats to Wii.
+    * Round-trip decoding/encoding IS actually supported, but NOT downgrading newer formats to Wii.
     * Because Nintendo has never officially supported this conversion, it has to be made from scratch.
-    * A certain library already does this conversion by using tables of handpicked downgrade values.
-        * maybe they can be picked automatically based on the part outlines, I don’t know.
+        * A certain library [already does this conversion](https://github.com/Stewared/MiiJS/blob/9734717986f6954c90692c29d5da93985bd72d4d/formats.js#L279-L302) by using [tables](https://github.com/Stewared/MiiJS/blob/9734717986f6954c90692c29d5da93985bd72d4d/data.js#L3-L27) of handpicked downgrade values.
+        * Maybe the replacements can be picked automatically based on the part outlines, I don’t know.
     * However, I definitely want the ability for a user to pick the parts and colors they want as well.
-        * So, the library should detect if such picking as needed.
+        * There should be a method to let the user know if that's needed.
     * In addition, sadly my interest in the Wii is low.
         * it’s just a pain to get working. Does anybody actually like finding Wii remote batteries? IF THEY EVEN WORK?!
 
@@ -338,31 +352,31 @@ You know when you start a project, complete 80% in a week, then suddenly like 3 
         * Decoding/encoding is possible without ExtraInfo at all.
     * This works well with low-level languages, but not as much with JS, C#, Python, etc.
         * The library can’t exactly return two new objects.
-    * What I’ll probably do is have a class that includes both.
+    * Anyway, what I'll probably have to do is have a class that includes both.
+* ![Pasted Graphic 5.jpg](Attachments/7C22A88D-C32B-422C-B44A-EAC636939F8E.jpg)
+*Looks uglier the more I look at it. Who came up with this crap?! 😹*
 
 After I solve all these challenges, there’s one more anomaly that looms over me before I release the library.
 
 ### The Struct Anomaly
-
-As you know, I take accuracy very seriously. In order for the library to be the most accurate than any previous attempt, I’ve used actual debug info and lookup tables extracted from the Face Library code.
+As you know, I take accuracy very seriously. In order for the library to be more accurate than any previous attempt, I’ve used actual debug info and lookup tables extracted from the Face Library code.
 
 However, I’ve decided that I must put all of these structures and look up tables in one nice repo before I release the library. I just have to.
 This is one of those tasks I’ve been putting off for a little bit more than a year that probably won’t take more than three days, but, alas, I have to find the time.
 
-previously, I kept overthinking this task because there’s now three formats for structures I’ve used, and they all have their own niche uses:
+One of the reasons I kept overthinking this task is because there’s now three formats for structures I’ve used, and they all have their own niche uses:
 * C/C++ headers (.h)
 * Kaitai Struct YAML (.ksy)
 * ImHex Pattern (.hexpat)
-**screenshot of all three folders of these**
+![• 2025-unknown-structs.hpp](Attachments/B4F9689B-D34B-4C05-90EC-00C29905B442.jpg)
 
-What I thought I had to do previously was to choose one of these formats, and create a script that generates the others from a single definition.
-Eventually, I realized that I could just create all of them one time, because there are only so many structures.
+What I thought I had to do previously was to choose one of these formats, and create a script that generates the others from a single definition. I even [tried using struct-fu](https://jsfiddle.net/arian_/f6daxrjt/2/) for this.
+Eventually, I realized that I could just create all of the definitions one time, because there are only so many structures.
 Or heck, maybe I don’t even need to. I already have a bunch of structures in all three formats sitting on my computer, so arguably, I just need to round up all of the files that I’ve already been sending to people on request and just post the darn thing already. gah.
-
 
 ## In Other News
 There are some projects from others that I’d like to highlight and write about in this post as well.
-* 
+
 * New Mii ID Tools?
 * Can  you Use my Code
 
