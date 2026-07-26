@@ -4,7 +4,7 @@ date: 2026-07-19T15:25:00-04:00
 draft: true
 ---
 
-
+## Introduction
 One of the reasons I started this blog was to actually give myself a direction for the many projects that I’m stuck working on.
 And you know what? I gotta say that I’ve been more productive in the past few months than the majority of last year, so today I have some nice updates to share with you.
 
@@ -101,7 +101,7 @@ bold = put links.
 * Accepting any Mii data format
 * Adapting to future changes
 
-In an earlier draft of this post I had a big list of people who'd legitimately find this useful right now, but I cut that since it seemed boring. But trust me, it filled one or two pages. You do trust me, right?
+In an earlier draft of this post I had a big list of people who'd legitimately find this useful right now, which I cut since it seemed boring. But trust me, it filled one or two pages. You do trust me, right?
 
 ### The Lengths people Go To for Mii
 One of the biggest reasons I’m still working on this stuff is that I know people struggle working with Mii characters.
@@ -254,10 +254,10 @@ At the same time, I hope you can understand when I say that I've been burned by 
 and I definitely don't want to repeat my mistake of letting others "build the rest of the world" before I'm even finished with the foundation this time.
 Don't get me wrong, I am 100% planning on releasing everything I work on at some point, and DON'T think that it'll be like this forever - all of my projects are tracked under Git version control.
 
-Until then, I still thought I'd throw The Reader a bone here. This is the HTML for that shape viewer I showed off earlier: **fdljhkfljasdjlfs.html**
-This isn't meant for anything more than just playing around with, and you will notice that the JS is aggressively minified. I hate to be like that, but I still think this could be useful for at least somebody even in its current form. Also notice how it's just 19 KB isn't that INSANE!!!!!
+Until then, I still thought I'd throw The Reader a bone here. This is the HTML for that shape viewer I showed off earlier: **2026-05-23-mii-fusion-shape-viewer.html**
+This isn't meant for anything more than just playing around with. You will also notice that the JS is aggressively minified. On one hand, I was able to squeeze this down to just 30 KB isn't that INSANE!!!!!, but I also hate to be like that. Still, I thought it'd at least be worth having it available to those who want to see my progress.
 
-Enjoy, give credit if you do anything with this, and look forward to the full thing. 🫡
+Enjoy, and look forward to the full thing. 🫡
 ## 
 ## Fusion Mii Data Library
 Writing my own “good” Mii data library is something I’ve been planning for a year and a half, and it’s the reason I even began looking at Fusion.
@@ -377,9 +377,6 @@ Or heck, maybe I don’t even need to. I already have a bunch of structures in a
 ## In Other News
 There are some projects from others that I’d like to highlight and write about in this post as well.
 
-* New Mii ID Tools?
-* Can  you Use my Code
-
 ## TL:LTD Wi-Fi Transfers Reversed!
 Do you remember that one game Nintendo released earlier this year? I think it was called, like… Tomodachi Life: Loathing The Dream?
 
@@ -401,3 +398,121 @@ I think I could speak for everyone when I say that interest in this game dropped
 The only reason I’m even bringing this up here is because… well, i’ve been writing this post ever since May. Whoops.
 
 But if I’ve learned anything from this… “community”, it’s that somebody may care at some point. Maybe.
+
+- [ ] Other: Tomiimo
+
+## New Miitomo Revival: Tomiimo
+Recently a new revival popped up for Miitomo, Nintendo’s Mii-centric mobile app that shut down in 2018: [tomiimo.online](http://tomiimo.online).
+**screenshot of some miitomo features** side by side
+
+When I started hearing about this new project in May, it was very gratifying to know that a new person started to work on this.
+But why would I care about a new revival of a 10-year-old Nintendo app, when there had already been one for 6 years?
+
+### What about Kaerutomo?
+If you’ve never heard of them, [Team Kaeru](https://kaeru.world/) revives a handful of obscure Nintendo online services, and Miitomo is one of their four major projects.
+**sc: kaeru home page**
+
+However, their revival [Kaerutomo](https://kaeru.world/projects/kaerutomo) is infamous [for being unreliable](https://www.reddit.com/r/kaerutomo/search/?q=down&type=posts&sort=new) and incomplete. As I write this, it has been down for n months. That followed a huge outage they had for majority of 2024.
+
+One example of a basic feature that doesn’t work is Miifoto **link to news article that explains this feature**. if you try to access it the way you normally would, the app freezes. You instead have to [go through another confusing screen](https://www.reddit.com/r/kaerutomo/comments/1egsb4h/comment/lfuuwwl/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+
+Another major feature that doesn’t fully work is QR codes. you can create and scan them, but it doesn’t preserve extra data in this game - Switch colors, personality, voice… they are all gone when you rescan.
+**image: qr image created, vs qr image scanned in**
+
+### Kaeru Sucks
+Throughout their outages, the owners of Kaeru have discussed stuff going on in their life making it hard for them to maintain it. Life is tough enough as it is, and the amount of kids begging them to bring Kaerutomo back surely doesn't help things.
+
+However, I get less sympathetic hearing this sort of thing when** their source code is still private**, even after they promised [to go open source in 2024](https://discord.com/channels/223605223241940992/241951273606316033/1216169368745148466). My friends also never heard back from them when they asked for help.
+![Gab @CAPC 2/2/26, 2:40 PM](Attachments/46B91F40-ECD7-4DCC-AAF8-0EB737064854.jpg)
+![Rixy 6/10/24, 3:10 PM](Attachments/15F0A2B6-9901-401A-BB29-3DCED1B61D00.jpg)
+
+By far the most annoying interaction was around QR code extra data.
+
+Back in 2024 I really wanted to figure out how to scan these, and because Kaeru didn't share any code or reverse engineering, I had to reverse engineer everything on my own. This includes:
+* [The QR code *extra* data encryption key](https://github.com/ariankordi/my-jsfiddles/commit/88bfb09246cb8156c9074b7f7140b0b3b04d5d4b#diff-18fde0cf7124de564d56f963f6ba56d74047bc174c501ed2d064600a28024796R7)
+    * Also used for Tomodachi Life and Miitopia, I believe nobody else had found this before I did.
+* [Obfuscation for the game's HTTP data](https://gist.github.com/ariankordi/0b990239daa1f69d571c7de3bec57cc4/679a2af7d05034848b19630483bb0e6ce5f8ca8b)
+    * Because it turns out that the "extra data" was actually stored server-side.
+    * This is exactly what stopped me from making my own revival back in 2016-18, by the way. If only.
+* [Data structure used for clothing, headwear, etc.](https://github.com/ariankordi/my-jsfiddles/commit/e66409d354698dc3ff076bb6a4635e25467aa10d)
+
+After all of this, I was able to spoof the server and get the app to accept the "extra data" that I sent back. It demonstrates how Kaeru could fix this feature.
+**embed this: [https://discord.com/channels/360173962862395392/378688267802902528/1284356906231664682](https://discord.com/channels/360173962862395392/378688267802902528/1284356906231664682)**
+
+After having this proof-of-concept ready, I sent a detailed report to the only developer who (didn't) listen.
+
+I didn't even ask them to fix it. I even asked them to GIVE ME THE CODE, so that I could fix this FOR FREE!
+
+And what do I get back for all of this? Absolutely nothing.
+![caded is not sure whether you've heart of the Mi renderer project he doing](Attachments/7D0527FD-91F5-4D27-80C7-615594C28F84.jpg)
+
+Two years later, a friend pestered them on my behalf about it again. I don't have a screenshot this time, but I explained my case again and it was even worse.
+
+They basically ignored what I was saying and only responded to what they wanted to, saying "a version 3 is being planned" *(but you don't even maintain the current one)*, "we intend on open-sourcing Mii QR generation" *(known since ~2018)*, and "it's probably safe to release the obfuscation code" *(when I already did).*
+
+Teams like this actively hurt reverse engineering more than they help. Seriously, shame on them for not releasing dumps or code.
+
+### Enter Tomiimo!
+
+In contrast to Kaerutomo, Tomiimo seems quite lively. By contrast, Tomiimo seems quite lively. New features are being added regularly, and it's committed to achieving as close to 100% functionality as possible.
+
+![Pasted Graphic 4.jpg](Attachments/5D094B91-3C75-4A06-87D4-55A2C2245C5E.jpg)
+*The (seldom-updated) progress seems very promising!*
+
+Mitch, the author, is taking many suggestions from the community, and has also promised to release the source code.
+Of course it's just a promise, but I trust it a lot more than the guys who couldn't even acknowledge the bug I was going to fix for them, if only they could get over their arrogance and hand the code to someone who knows what they're doing. GOD.
+
+Many who are active on the Discord have been let in to test, and I've heard good things about how it's going. I've seen screenshots of more features working than I've seen in Kaerutomo, such as the comments section.
+
+And of course, according to them "nothing is paywalled". This is a nice contrast from how Kaerutomo's "beta" (the only way you can play Kaerutomo right now) requires [subscribing to their Patreon](https://www.patreon.com/kaeru).
+![Tomiimo bot (APP 6/4/26,4:00PM](Attachments/F1433D10-1F20-4B69-9C55-D34FD5AE2565.jpg)
+
+Now he's also talked about not wanting many screenshots or footage of testing coming out, which is... weird but I can get it. That means there isn't that much more to say, other than some miscellaneous thoughts surrounding it.
+
+* Mitch has been a pretty mysterious fellow. This project came out of nowhere, and I don't know if he has a GitHub profile or any other history.
+![I'm Henry K:> 6/9/26, 8:36 PM](Attachments/269A213E-6373-49B1-9373-2E603693CFCA.jpg)
+*Quote when [asked what inspired him](https://discord.com/channels/1505310136695001269/1506877242599407676/1514067805690134629).*
+
+![-XOU/MIICH 7/1/26.2:33 PM](Attachments/D4FB9954-1828-440D-93ED-1FA133D35713.jpg)
+*Mitch [says outright](https://discord.com/channels/1505310136695001269/1520000856093888582/1521946843456475248) that he isn't a Mii fan.*
+
+
+* There's this library I released a while back (in Fusion! 🥰) for handling the game's obfuscated HTTP traffic, a major piece needed to reverse engineer it: [https://github.com/ariankordi/SakashoObfuscation](https://github.com/ariankordi/SakashoObfuscation)
+    * It is and was a great use for Fusion, and I'd delighted to find out he ended up using it.
+    * (FWIW, the app DOES have more obfuscation for e.g. the URLs themselves in libsakasho.so, and he's said to have used Ghidra before, so I'm sure this... actually wasn't as big of a deal as I made it out to be, oops)
+    * According to him, he [did use it at some point](https://discord.com/channels/1505310136695001269/1506877242599407676/1522463541381300355) but not anymore. At least it wasn't useless, I guess!
+![© @Nyoko I wonder if mitch used ariankordi's tool to deobfuscate sakasho https://gi... B](Attachments/50488463-42DA-41B5-89B3-1326A9848A60.jpg)
+    * There's also some code he needed for encoding the Switch CoreData format which he just seemed to come up with without asking me or anyone else...
+
+
+* I'm really, really looking forward to seeing and contributing to the code, which isn't out as of writing (3 months in).
+    * Understandably, Mitch has been [waiting it out](https://discord.com/channels/1505310136695001269/1520000856093888582/1521949288278786228).
+![FX00/MITCH 7/1/26,243 PM](Attachments/BDEB68A9-8FB7-4B8B-A190-A2C5C06AEB3F.jpg)
+    * I was a bit [weary about QR codes](https://discord.com/channels/1505310136695001269/1506877242599407676/1520476670371430584) for a bit there, as he made a choice I disagreed with.
+    * Ideally I want the Miitomo QR extra data to be self-contained, as the "extra data" is currently stored on the server. I'd probably use [eFFSD](https://github.com/ariankordi/ffl_mii_patcher_plugin/blob/main/effsd/README.md) or similar.
+        * That way you can create/read QR codes for Miitomo from other apps, without involving an external server.
+
+
+### My ideal, "REAL" future of Miitomo?
+This is a game I've been interested in for a long time, and tried reversing since the very beginning. I've had HTTP dumps of the game dating back to 2016. **todo find and post!**
+
+I felt I had enough experience to clone the backend (like I did with [Miiverse](https://github.com/ariankordi/grape), [SplatNet](https://github.com/ariankordi/splatnet-plus), [NNAS](https://github.com/ariankordi/altnnas) kinda), and by now I’m familiar with decompilation enough to figure out the harder parts like for the obfuscation and QR encryption.
+
+This begs the question, why did I never begin working on my own revival?
+Well, Miitomo has aged a lot. It's over 10 years old by now, and doesn't work on any modern devices.
+* It crashes on iOS 16 and higher, meaning you [need a device from 2016](https://iosref.com/ios#iphone).
+    * There's a [fix I tried here](https://discord.com/channels/223605223241940992/470891361781153794/1459752254746656893) (Kaeru Discord), but this didn't work on iOS 17.
+* The Android version is 32-bit, so [recent devices may not run it natively](https://news.ycombinator.com/item?id=43932674).
+
+But ever since I [reversed Miitomo rendering](https://github.com/ariankordi/FFL-Testing/commit/429d8c946cabf5366a6c47802a6504ec327d50ba), knowing we've had the ability to [extract the game's assets](https://github.com/PicelBoi/pvr-model-extractor), and even seeing the [Mii voices get reversed](https://github.com/dylanpdx/talkmodachi)... can't we just make "our own Miitomo"?
+That way, we can do whatever we want with it. It can run in a browser, and connect to other social media platforms. After all, I've always yearned for the "Twitter with Miis" experience... 🤤
+
+That being said, I know that a revival is harder to get wrong than a remake (unless you're Kaeru).
+How often do Nintendo fan projects actually *look and feel *like the real deal? It’s more of the exception rather than the rule*. *All you need to do is search "Mii" on ROBLOX to find the crap people are willing to put out.
+
+At the end of the day though, the app DOES need a revival available to at the very least preserve its history, so that’s that.
+
+### Conclusion
+If you want the latest on Tomiimo, I recommend joining the Discord linked on [tomiimo.online](http://tomiimo.online).
+
+Will there ever be a true Miitomo decomp/remake any time soon? Well, I'm not holding my breath for it to happen. However, I hope that the more I develop, the closer we can get!  And of course, I wish the best of luck to Mitch. Despite my cynicism here, this is a lot to pull off for one guy - especially one that seems? at least a little bit? foreign to the scene. here. Whatever you want to call it.
