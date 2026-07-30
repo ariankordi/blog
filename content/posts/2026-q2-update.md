@@ -366,13 +366,13 @@ Do you remember that one game Nintendo released earlier this year? I think it wa
 
 Shortly after the game came out and before everybody stopped caring about it, I [shared my thoughts on the game](/posts/2026-04-new-tomodachi-thoughts/#getting-miis-inout-of-the-game). My post basically came down to “okay but how can we hack it”.
 
-Specifically, my sights were set on the local [Wi-Fi transfer feature in the game](/posts/2026-04-new-tomodachi-thoughts/#getting-miis-inout-of-the-game). I handful of people begin looking into this alongside me, and I’m pleased to share that they have results!
+Specifically, my sights were set on the local [Wi-Fi transfer feature in the game](/posts/2026-04-new-tomodachi-thoughts/#getting-miis-inout-of-the-game). A handful of people in [Kinnay's Discord](https://github.com/kinnay/NintendoClients/blob/master/README.md?plain=1#L8) began looking into this alongside me, and I’m pleased to share that they have results!
 
 <video controls src="/uploads/2026-q2-update/20260516_184507.mp4" style="width: 100%; max-width: 650px;"></video>
 
-This is Skyler’s [experiment](https://discord.com/channels/1384201738738864228/1384201739569205350/1505357341544026173) for transferring Miis between an unmodded console and a PC, which this video shows working pretty well. Source code is [available here](https://github.com/sbjessee/LDN-TL-LTD).
+This is Skyler’s experiment [(Discord link)](https://discord.com/channels/1384201738738864228/1384201739569205350/1505357341544026173) for transferring Miis between an unmodded console and a PC, which this video shows working pretty well. [Source code is available here](https://github.com/sbjessee/LDN-TL-LTD).
 
-Another guy from Kinnay’s Discord, shatter9652, had also managed to get this working. His [repo contains many miscellaneous tools](https://github.com/shatter9652/ldn_experiments) that may be worth checking out.
+Another guy, shatter9652, had also managed to get this working. His [repo contains many miscellaneous tools](https://github.com/shatter9652/ldn_experiments) that may be worth checking out.
 
 With that exciting news out of the way, both of these people pretty much gave up on their ideas as soon as they got to this point. Effectively, it only works on Linux with no GUI.
 ![May 29,2026](/uploads/2026-q2-update/00BF7361-7C97-4AAA-B29F-696B4E57E8DC.jpg "500px")
