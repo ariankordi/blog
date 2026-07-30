@@ -4,8 +4,9 @@ date: 2026-07-29T15:25:00-04:00
 draft: false
 ---
 
-One of the reasons I started this blog was to actually give myself a direction for the many projects that I’m stuck working on.
-And you know what? I gotta say that I’ve been more productive in the past few months than the majority of last year, so today I have some nice updates to share with you.
+One reason I began writing this blog was to give myself a direction for the many proejcts I'm stuck working on.
+
+And you know what? I gotta say that I’ve been more productive after my first posts than for the majority of last year. I hope to continue that, so today I have some nice updates to share with you.
 
 ## New Mii Renderer Server
 
@@ -425,8 +426,8 @@ _It contains a 3DS/Wii U compatible section (reduced colors and no further data)
 Throughout their outages, the owners of Kaeru have discussed stuff going on in their life making it hard for them to maintain it. Life is tough enough as it is, and the amount of kids begging them to bring Kaerutomo back surely doesn't help things.
 
 However, I get less sympathetic hearing this sort of thing when **their source code is still private**, even after they promised [to go open source in 2024](https://discord.com/channels/223605223241940992/241951273606316033/1216169368745148466). My friends also never heard back from them when they asked for help.
-![](/uploads/2026-q2-update/46B91F40-ECD7-4DCC-AAF8-0EB737064854.jpg "350px")
-![Rixy 6/10/24, 3:10 PM](/uploads/2026-q2-update/15F0A2B6-9901-401A-BB29-3DCED1B61D00.jpg "350px")
+![](/uploads/2026-q2-update/46B91F40-ECD7-4DCC-AAF8-0EB737064854.jpg "450px")
+![Rixy 6/10/24, 3:10 PM](/uploads/2026-q2-update/15F0A2B6-9901-401A-BB29-3DCED1B61D00.jpg "550px")
 
 By far the most annoying interaction was around QR code extra data.
 
