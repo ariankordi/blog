@@ -1,20 +1,21 @@
 ---
 title: 2026 Quarter 2 Update!
-date: 2026-07-19T15:25:00-04:00
-draft: true
+date: 2026-07-29T15:25:00-04:00
+draft: false
 ---
 
 One of the reasons I started this blog was to actually give myself a direction for the many projects that I’m stuck working on.
 And you know what? I gotta say that I’ve been more productive in the past few months than the majority of last year, so today I have some nice updates to share with you.
 
-Table of contents: **todo.**
-
 ## New Mii Renderer Server
 
 Like [mentioned in my last post](/posts/2026-mii-status-backend/), my two-year-old code for this has needed to be rewritten for a while. Since then, the list of reasons to finish this has just grown larger and larger.
+
 Allow me to show you how I've been doing with this.
 
 ![](/uploads/2026-q2-update/4916A462-D5BE-4AA6-9E52-8EF7C0A751C8.jpg "650px")
+
+<!--more-->
 
 These are examples of some rendering features:
 
@@ -105,53 +106,6 @@ We know that we can create icons, but what will the interface look like? How can
 
 In an earlier draft of this post I had a big list of people who'd legitimately find this useful right now, which I cut since it seemed boring. But trust me, it filled one or two pages. You do trust me, right?
 
-### The Lengths people Go To for Mii
-
-**debating whether to cut this section. it also needs links**
-
-One of the biggest reasons I’m still working on this stuff is that I know people struggle working with Mii characters.
-
-People have struggled and will keep struggling if there aren’t good solutions that work for all.
-I also know that if nobody solves this problem effectively, then it will continue to be a problem years and years down the line - it won’t just solve itself.
-
-Because this is something I really really care about, I’d rather spend this much much of my own time so that nobody else has to. Or more importantly, so that nobody duplicates work. Case in point…
-
-- Wheel Wizard’s C# Codex FFL Abomination
-    - Remember how weird their renders looked? It turns out that this is because they tried to do a whole port of the Face Library.
-        - Everything from shape loading to texture positioning was ported from Abood’s decomp to C# by OpenAI Codex.
-    - The result is passable, I mean it does the job, and it is in pure C#.
-        - if you look further, you will find out that it is doing software rendering. This makes the code larger and slower.
-    - My problem is that instead of extending my incomplete C++ code to work as a library, we instead got this port.
-        - Theirs will only work in .NET, compared to the C++ code you can bind to many languages.
-    \*
-- Pretendo’s Mii Rendering Odyssey
-    - Up to this point, they haven’t used my renderer at all.
-        - Not unjustified since it’s more on the experimental side.
-        - Though they also didn’t give much precise feedback, or offered to help…
-    - In 2024, I’ve heard whisperings around them trying to emulate Miitomo code for this.
-        - Took them longer than I did to realize that Miitomo uses the same FFL, and gave up.
-    - In late 2025, they looked into using FFL.js.
-        - I made [a working icon example usable from Node.js](https://github.com/ariankordi/FFL.js/commit/c8d15f35b7c64b8d21eb2933eec8ca4dcb60e343), accurate with the account servers.
-        - they then abandoned the idea of using this after seeing how slow it was.
-            - I get it, but come on, you can’t even profile or fix it before giving up?
-    - Soon after, Jon tried to rewrite the server in Rust.
-        - he didn’t get very far, though admittedly there is a lot that he does.
-    - I won’t tell them about my server because they’ll probably vomit at how it’s still in C++.
-        - I am a little biased against Rust since I’m not familiar with it, but I don’t know if I would’ve been able to get as small of a binary size with it.
-        - Plus, I am developing with ASan, UBSan, and [Clang Safe Buffers](https://clang.llvm.org/docs/SafeBuffers.html).
-- PocketPass’s FFL.js V8 Roundabout
-    - After not being able to make mii.nxw.pw work, the developer looks toward a method that didn’t involve a WebView.
-    - I was shown a screenshot of a seemingly working Mii editor in his app. But he said it was using FFL.js, which confused me.
-    - Turns out that he actually ran the JavaScript code in an embedded V8 engine, directing WebGL calls to OpenGL ES.
-    - His approach is a clever hack, though embedding a JavaScript engine in your program adds a lot to the binary size.
-        - And it’s not like he got to write the thing in native Kotlin. May as well driven it with native C++.
-
-Are you getting the picture I’m trying to draw here? These examples don’t even count the half dozen people who have made their own completely original Mii implementations that rarely look accurate.
-
-It also goes to show the amount of effort people are willing to put into this. So although my Fusion library is meant to load models without drawing them, I think at least some people will go the extra mile and use it for their own renderer.
-
-In conclusion, there are many real people out there today who would benefit from a modular Mii rendering solution. Now I just gotta get to it...
-
 ## Mii Fusion Rendering
 
 These major parts make up the Mii "system", and it's what I'm trying to remake in my Fusion code:
@@ -163,7 +117,12 @@ These major parts make up the Mii "system", and it's what I'm trying to remake i
 My biggest gap was with resource files, which provide shapes and textures. Like demonstrated in [a previous post](/posts/2026-mii-fusion/#done-rendering), I was able to parse _some_ of these generations. However, all of them were in completely separate classes and required unique code to support each.
 
 As a result, I began rewriting it all at the end of April. All formats now use a shared interface, so you can write one piece of code and access any of them. Let me show you:
-**video**
+
+
+<video controls src="/uploads/2026-q2-update/Screen%20Recording%202026-07-27%20at%2011.15.40%E2%80%AFPM.mp4" style="max-width: 650px;"></video>
+
+_Slightly shorter and older video available [here](/uploads/2026-q2-update/Screen%20Recording%202026-04-19%20at%206.33.16%E2%80%AFPM.mp4)_
+
 
 What you’re seeing here is my simple “shape viewer” in JavaScript.
 
