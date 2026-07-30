@@ -119,7 +119,7 @@ My biggest gap was with resource files, which provide shapes and textures. Like 
 As a result, I began rewriting it all at the end of April. All formats now use a shared interface, so you can write one piece of code and access any of them. Let me show you:
 
 
-<video controls src="/uploads/2026-q2-update/Screen%20Recording%202026-07-27%20at%2011.15.40%E2%80%AFPM.mp4" style="max-width: 650px;"></video>
+<video controls src="/uploads/2026-q2-update/Screen%20Recording%202026-07-27%20at%2011.15.40%E2%80%AFPM.mp4" style="width: 100%; max-width: 650px;"></video>
 
 _Slightly shorter and older video available [here](/uploads/2026-q2-update/Screen%20Recording%202026-04-19%20at%206.33.16%E2%80%AFPM.mp4)_
 
@@ -153,7 +153,7 @@ Finally, just for the heck of it, here's one simple example that decodes shape d
 - What it decodes is just the glasses shape data (which is a simple quad) from NFL (DS), NX, and FFL.
     - Last two are zlib compressed.
 - To enable decompression in pure Fusion, I ported a zlib decompressor from C++.
-    - I posted it here if you want, but please read below: https://gist.github.com/ariankordi/88029b5ef0760ef8b12acbc7e70f7f3e
+    - I [posted it here if you want](https://gist.github.com/ariankordi/88029b5ef0760ef8b12acbc7e70f7f3e), but please read below.
     - The ONLY reason to do decompression in pure Fusion like this would be to build tests with zero dependencies, such as the one I showed above.
         - Otherwise, this adds bloat and I would not use it for an actual program.
         - Instead, I recommend simply running decompression outside of the Fusion code/library.
@@ -368,7 +368,7 @@ Shortly after the game came out and before everybody stopped caring about it, I 
 
 Specifically, my sights were set on the local [Wi-Fi transfer feature in the game](/posts/2026-04-new-tomodachi-thoughts/#getting-miis-inout-of-the-game). I handful of people begin looking into this alongside me, and I’m pleased to share that they have results!
 
-<video controls src="/uploads/2026-q2-update/20260516_184507.mp4" style="max-width: 650px;"></video>
+<video controls src="/uploads/2026-q2-update/20260516_184507.mp4" style="width: 100%; max-width: 650px;"></video>
 
 This is Skyler’s [experiment](https://discord.com/channels/1384201738738864228/1384201739569205350/1505357341544026173) for transferring Miis between an unmodded console and a PC, which this video shows working pretty well. Source code is [available here](https://github.com/sbjessee/LDN-TL-LTD).
 
@@ -440,7 +440,7 @@ Back in 2024 I really wanted to figure out how to scan these, and because Kaeru 
 
 After all of this, I was able to spoof the server and get the app to accept the "extra data" that I sent back. It demonstrates how Kaeru could fix this feature.
 
-<video controls src="/uploads/2026-q2-update/Screen_Recording_2024-09-13_at_11.26.16_PM.mp4" style="max-width: 650px;"></video>
+<video controls src="/uploads/2026-q2-update/Screen_Recording_2024-09-13_at_11.26.16_PM.mp4" style="width: 100%; max-width: 650px;"></video>
 
 After having this proof-of-concept ready, I sent a detailed report to the only developer who (didn't) listen.
 
