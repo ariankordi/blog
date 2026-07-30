@@ -510,7 +510,7 @@ Well, Miitomo has aged a lot. It's over 10 years old by now, and doesn't work on
     - There's a [fix I tried here](https://discord.com/channels/223605223241940992/470891361781153794/1459752254746656893) (Kaeru Discord), but this didn't work on iOS 17.
 * The Android version is 32-bit, so [recent devices may not run it natively](https://news.ycombinator.com/item?id=43932674).
 
-But ever since I [reversed Miitomo rendering](https://github.com/ariankordi/FFL-Testing/commit/429d8c946cabf5366a6c47802a6504ec327d50ba), knowing we've had the ability to [extract the game's assets](https://github.com/PicelBoi/pvr-model-extractor), and even seeing the [Mii voices get reversed](https://github.com/dylanpdx/talkmodachi)... can't we just make "our own Miitomo"?
+But ever since I [reversed Miitomo rendering](https://github.com/ariankordi/FFL-Testing/commit/429d8c946cabf5366a6c47802a6504ec327d50ba), knowing we've had the ability to [extract the game's assets](https://github.com/ichigoleite/pvr-model-extractor), and even seeing the [Mii voices get reversed](https://github.com/dylanpdx/talkmodachi)... can't we just make "our own Miitomo"?
 
 That way, we can do whatever we want with it. It can run in a browser, and connect to other social media platforms. After all, I've always yearned for the "Twitter with Miis" experience... 🤤
 
@@ -597,7 +597,7 @@ But. There's an internal struggle inside me surrounding this project.
 
 Ever since last year, the idea of releasing any new code has made me uncomfortable. Why is that?
 
-Something I began seeing is people taking what I wrote and running with it, and in some cases without giving back. In other words, I've been ripped off.
+Something I began seeing is people taking what I wrote and running with it, and in some cases without giving back. In other words, I feel ripped off.
 
 What I saw were a couple of apps, ones that I've had similar ideas of building, made in ways I didn't like. _Hopefully you can picture an example._
 
