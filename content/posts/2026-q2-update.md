@@ -562,10 +562,126 @@ How often do Nintendo fan projects actually _look and feel _like the real deal_?
 
 At the end of the day though, the app DOES need a revival available to at the very least preserve its history, so that’s that.
 
-#### Conclusion
+#### Anyway
 
 If you want the latest on Tomiimo, I recommend joining the Discord linked on [tomiimo.online](http://tomiimo.online).
 
 Will there ever be a true Miitomo decomp/remake any time soon? Well, I'm not holding my breath for it to happen. However, I hope that the more I develop, the closer we can get!
 
 And of course, I wish the best of luck to Mitch. Despite my cynicism here, this is a lot to pull off for one guy - especially one that seems? at least a little bit? foreign to the scene. here. Whatever you want to call it.
+
+## Conclusion: When is this stuff coming out?
+
+
+### Mii Fusion Data Library
+
+* I estimate a few days of remaining features/fixes are needed, though, most challenging parts are ahead of me...
+* Like mentioned earlier, that struct repo needs to be created and thrown on GitHub before I release this. I'll probably have to force myself, but.. I think I can do it...
+* A major piece for me to figure out is how you release a library in Fusion to begin with.
+  - We're definitely publishing [builds for each language](https://github.com/pfusik/qoi-fu/tree/master/transpiled), but will they be in the main repo? Separate repo? Releases?
+  - Am I going to create packages for _every language????_ 🙈🙈🙈
+  - May also need to create CLAUDE.md or other such files, as agents don't know what Fusion is.
+    * My worst nightmare, which I almost saw happen, is for someone's agent to misinterpret and rewrite all code instead of using the existing port. AAAAA
+* Even with all of that "administrative" work over with, the last major part will be **creating some small apps around this.**
+  - What I really want are small tools for the command line and in HTML/JS. They'd let you use features of the library.
+  - With vibe coding in the picture, it actually shouldn't take more than a couple of days for a prototype.
+
+If I had to give an ETA, **let's say 2-3 months**. None of this is "hard work", just a lot for me to process.
+
+### Mii Renderer Server Rewrite/Library
+
+* This is probably the closest to finished. A week or two of effort will bring it on par with [the old server](https://github.com/ariankordi/FFL-Testing).
+* With rendering being more-or-less fully implemented, what's left isn't necessarily on the code side. Rather, I need the discipline to ACTUALLY decide the interface.
+* My next step for this project was to vibe code my way to completion.
+  - This will undoubtedly produce code that I hate, but it'll at the very least give me something to work with.
+  - What would help a lot is to take existing applications and try replacing their existing rendering with this, kinda like I did with the data library.
+* Where I get weary is that I DO have a dependency on some Fusion code in this. So umm...
+  - Not sure what to do about this yet. Waiting longer to publish the other will undoubtedly hurt more than it helps...
+  - I guess I could ship the transpiled C++ without the original source? Not sure.
+
+I would be deeply disappointed in myself if this weren't out in **2 months**.
+
+### Mii Fusion Rendering Core. Thing
+
+* This is the least ready of all three. Really, it's the most tech demo-y.
+* Like the data library I'll also need to figure out how to package this, but there is another repo I have to publish that I [lightly touched upon at some point](/posts/2026-mii-fusion/#how-do-i-know-the-code-works).
+  - Thankfully, that repo I call "r2-bintable-extract" is already in source control and much more ready to release.
+* By far the biggest blocker is that I 100% NEED to see this in action alongside FFL.
+  - This will help me verify accuracy, so that it'll actually be a viable replacement. Not something that's worse.
+  - Using this in a real program will also help me... (groan) design an interface.
+    * Yes this will be another inevitable time sink, but I want the Fusion part to be designed in a way where the user has to write as little of their own code as possible.
+    * Any simplifications I make along the way may break it, so that's where the FFL comparison comes in.
+
+There's also some extras that would be nice but are not mandatory:
+* I'd love to have the Mii model exporter working in Fusion.
+  - It was the perfect pitch for the library, the “Mii to Model in any language” dream I promised/[proved in May 2025](https://github.com/ariankordi/mii-fusion-experiments/commit/55c07869623db7810e29ff71e2df507a9fcb3245).
+  - For me to want this in Fusion WOULD require [the C++ version](/posts/2026-mii-status-backend/#new-gltf-exporter) to be in a good state. So if I didn't have enough circular dependencies, that's another. 🫠
+* Another great thing to have would be the ability to edit/re-pack resource files. Then the resource library would be a LOT more useful!
+
+With all that being said, I wouldn't be surprised if 1.0 is **4-5 months away. :(**
+
+Reality is harsh. I always imagined releasing my Fusion data + rendering code together as the "ULTIMATE Mii Solution!!!!!!!!!!", hitting people with this epic repo.
+
+But I really can't be waiting for too much longer, so when the repo is made public, it'll be a little watered down until rendering is ready. Oh well.
+
+(P.S., I still don't know exactly what all of these will be called.)
+
+### Open source? Can I use it?
+
+Of course you can! Everything I've shown off here will be fully open under a permissive license (something MIT-compatible), when I'm ready to.
+<!-- probs zlib or bsd 3 -->
+
+If it's useful to you, please use it. If not, then don't. This goes for everything else I've published, and it will never change.
+
+But. There's an internal struggle inside me surrounding this project.
+
+## The Release Dilemma
+
+Ever since last year, the idea of releasing any new code has made me uncomfortable. Why is that?
+
+Something I began seeing is people taking what I wrote and running with it, and in some cases without giving back. In other words, I've been ripped off.
+
+What I saw were a couple of apps, ones that I've had similar ideas of building, made in ways I didn't like. _Hopefully you can picture an example._
+
+As humble as I try to be, I have pride in what I've been able to accomplish.
+I may not have done all of the work, but I'm not afraid to say that a TON of Mii projects wouldn't have happened (or turned out as well as they did) without my work.
+
+From my perspective, seeing someone take something I worked hard on and apply it to their (in my opinion) subpar creation, is something that kept rubbing me the wrong way.
+
+### Why I am Wrong
+
+I'm afraid to admit it, but this struggle eventually manifested as anger towards a couple of people and their projects.
+
+As a result, they developed this disdain towards me. They started thinking "we need to replace his code with ours", which put more pressure on me to make my new libraries as good as I could make them (hence Fusion ☺️).
+
+What usually happens with the "rewrites" these people do is that they are _always worse_ than what they replaced. I have not once been impressed when this happened. But, you can't control what others do.
+
+Those people end up with a slightly worse product, and I end up worse off because I didn't have anything to do with it. I lose the trust of others, and it brings me one step back from being a reliable "authority" on Miis.
+
+This leaves me looking like a hypocrite: I say that I'm a believer in open source, that any and all software should be free to build on. But the moment it's "MY" work, I start to be really particular about it. You can't have it both ways, and this is something I need to let go of.
+
+A lot of what I'm mentioning here is just plain immaturity that I'll have to get over, but there is another nuance here as well.
+
+### So, what now?
+
+The reality is: over the past year and a half, I've had barely anything to show for what I've worked on. No new tools, no site updates, not even any JSFiddles.
+
+Wouldn't you liked to see more fun experiments from me? How about my take on a Mii editor? _(I'm going to write an article soon on that topic, so stay tuned.)_
+
+My real problem isn't that the code is being swiped left and right. It happens, but the actual solution is for me to do more.
+
+Spending this long on just libraries, rather than something people can actually point to and use, has been making me lowkey miserable. It also slows progress due to having lower motivation.
+
+This is a cycle that has to end soon. I haven't quite worked myself out of it yet, but I know that the top projects I have in mind are absolutely finish-able before the end of the year if I put my mind to it.
+
+What does that mean for you, the reader? This time around, I really don't want to just release the library bare and watch people go wild with it. I would want to make at least a couple of useful things with it before I do.
+
+---
+
+## Conclusion
+
+At the end of the day: "Those that can, do. Those that can't, complain."
+
+And what have I been doing this whole time? 😁
+
+In all seriousness, if this post was interesting, I'd appreciate any comments. Thanks!
