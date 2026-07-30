@@ -522,7 +522,7 @@ At the end of the day though, the app DOES need a revival available to at the ve
 
 #### Anyway
 
-If you want the latest on Tomiimo, I recommend joining the Discord linked on [tomiimo.online](http://tomiimo.online).
+If you want the latest on Tomiimo, ~~I recommend joining the Discord linked on [tomiimo.online](http://tomiimo.online).~~ **As of July 30th:** Didn't realize their invites have been closed for a while. They did temporarily open them up buuuuuuuuuuuuut by the time I checked, they were closed again 😔 ![](/uploads/2026-q2-update/jul-30-tomiimo-invites-closed.jpg "500px")
 
 Will there ever be a true Miitomo decomp/remake any time soon? Well, I'm not holding my breath for it to happen. However, I hope that the more I develop, the closer we can get!
 
