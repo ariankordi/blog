@@ -17,47 +17,39 @@ This website can replicate the exact same styles of Mii renders as the Wii U, Mi
 
 # Previous Attempts at Mii Rendering
 
-Let's have a look at other attempts people have done over the years to render Mii characters, before getting into my approach.
+I've gathered a few screenshots of programs that have Mii functionality that I want you to see for comparison.
 
-## [My Avatar Editor](https://myavatareditor.blogspot.com/2008/07/my-avatar-editor-transitional-beta.html) (2009)
+### [My Avatar Editor](https://myavatareditor.blogspot.com/2008/07/my-avatar-editor-transitional-beta.html) (2009)
 
 ![myAvatarEditor_transitional.png](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-001.png "450px")
 
-It doesn't look horrible, but also doesn't look the same. It's not in 3D, it doesn't move, there are no expressions.
+Not a bad attempt, though it's only in 2D. No movement, expressions, animations...
 
 ![= File:Default Miis.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-002.jpeg "400px")
 
-This is also the source of the image used on Wikipedia, which everyone who isn't too familiar with Mii characters seem to use. Why do the arms look like that...?
+This program is also the source of the image used for "Mii characters" on Wikipedia, something I'm sure anyone reading will recognize. Why are the arms like that...?
 
 ## Joey Carlino Mii Maker for Blender FREE (Feb 2024)
 
 - ![url.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-003.jpeg "450px")
 
-It's finally in 3D for a change, but, you can probably tell that it looks... wrong. The facial elements are all too close to each other, and the skin color doesn't look right either. In his video, he mentions eyeballing a lot of this. I guess that's admirable, but won't cut it for our purposes.
+This is definitely an improvement being in 3D, but you can probably tell that it looks... off. In Joey's video, he mentions eyeballing a lot of this.
 
 ## iiMii Maker (Jun 2025)
 
 - ![Head Features.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-004.jpeg "450px")
 
-LMAO, this may be the worst one yet.
+Compared to the last tool, this one is actually usable outside of Blender. However, it still looks just as off. ~~Why is the face so small?~~
 
-I mean, Joey's is pretty inaccurate, but this one is VERY inaccurate. Why is the face so small?!
-
-At least this isn't using Blender. It's in Unity, so it only requires... a few hundred MB. Jesus.
-
-Neither of the above two projects support importing your own Mii data. WHY?! That's a death sentence if you ever hoped to do accurate rendering.
-
-Not to mention that features have been removed, lol?
-
-![Blushes have been heavily.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-005.jpeg "300px")
+As far as I'm aware, neither of these two can read/write actual Mii data from a console. How are you ever going to make them look like real Miis if you can't even import and compare existing characters?
 
 ## Chadsoft Mii Renderer (2017?)
 
-This is used on the leaderboards of that Mario Kart Wii mod, CTGP Revolution. And it's... interesting.
+This is used on the leaderboards of that Mario Kart Wii mod, CTGP Revolution.
 
 ![CTGP Revolution •.jpg](/uploads/How-Mii-rendering-works-%2B-rewriting-the-server-2509-attachment-006.jpeg "450px")
 
-Like MAE, this isn't terrible but certainly doesn't look nearly as good as it does on the real console. Too dark, no reflections, that body model doesn't look right. This is also completely in 2D.
+Like MAE, this isn't terrible but certainly doesn't look nearly as good as Miis do on the real console. Too dark, no reflections, that body model doesn't look right. This is also completely in 2D.
 
 ## [studio.mii.nintendo.com](http://studio.mii.nintendo.com) Rendering API (2018)
 
